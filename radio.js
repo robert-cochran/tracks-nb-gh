@@ -12,145 +12,191 @@
  */
 
 
+/**
+ * ------------TABLE---------------
+ */
+/**
+ * 
+ * @param {*} title 
+ * @param {*} url 
+ * @param {*} storageDivId 
+ * @returns 
+ */
 function createURLRowElem(title, url, storageDivId) {
-    //storage
-    const storageDiv = document.getElementById(storageDivId)
+	//storage
+	const storageDiv = document.getElementById(storageDivId)
 
-    //button
-    const buttonElem = document.createElement('button')
-    buttonElem.addEventListener("click", () => { 
-        storageDiv.setAttribute('title', title);
-        storageDiv.setAttribute('url', url);
-    })
-    buttonElem.innerText = "Play Track"
+	//button
+	const buttonElem = document.createElement('button')
+	buttonElem.addEventListener("click", () => { 
+		storageDiv.setAttribute('title', title);
+		storageDiv.setAttribute('url', url);
+	})
+	buttonElem.innerText = "Play Track"
 
-    //tableRow
-    const tableRow = document.createElement('tr')
-    const tableTitleData = document.createElement('td')
-    tableTitleData.innerText = title
-    const tableLoadData = document.createElement('td')
-    tableLoadData.appendChild(buttonElem)
-    tableRow.appendChild(tableTitleData)
-    tableRow.appendChild(tableLoadData)
+	//tableRow
+	const tableRow = document.createElement('tr')
+	const tableTitleData = document.createElement('td')
+	tableTitleData.innerText = title
+	const tableLoadData = document.createElement('td')
+	tableLoadData.appendChild(buttonElem)
+	tableRow.appendChild(tableTitleData)
+	tableRow.appendChild(tableLoadData)
 
-    return tableRow;
+	return tableRow;
 }
 
+async function createTrackTable(tracks, tableContainerId, storageDivId){
+	const trackRows = await Promise.all(tracks.map(async track => {
+		// console.log(track.title)
+		return createURLRowElem(track.title, track.url, storageDivId);
+	}))
+
+	trackRows.map(tableRow => {
+		document.getElementById(tableContainerId).appendChild(tableRow)
+	})
+}
+
+
+
+
+
+/**
+ * ------------TRACKS---------------
+ */
+
+ async function createTracks(urlsPath){
+	const urls = await loadURLsFromFilePath(urlsPath);
+	
+	const tracksArray = await Promise.all(urls.map(async url => {
+		const title = await getYoutubeVideoTitle(url)
+		const track = new Track(title, url)
+		// console.log(track.title)
+		return track
+	}))
+
+	const tracks = new Tracks(tracksArray);
+
+	return tracks
+}
 
 async function getYoutubeVideoTitle(url){
-    const response = await fetch('https://noembed.com/embed?url=' + url);
-    const jsonData = await response.json();
-    return jsonData.title;
+	const response = await fetch('https://noembed.com/embed?url=' + url);
+	const jsonData = await response.json();
+	return jsonData.title;
 }
 
-async function loadURLs(urlsPath, urlsElemTableId, storageDivId) {
-    const response = await fetch(urlsPath)
-    const focusUnparsedData = await response.text();
-    const unfilteredFocusURLs = focusUnparsedData.split(/\r?\n/);
+async function loadURLsFromFilePath(urlsPath) {
+	const response = await fetch(urlsPath)
+	const unparsedData = await response.text();
+	const unfilteredURLs = unparsedData.split(/\r?\n/);
 
-    const focusURLs = unfilteredFocusURLs.filter(url => {
-        return url.length > 1
-    })
+	const urlArray = unfilteredURLs.filter(url => {
+		return url.length > 1
+	})
+	
 
-    //filter duplicates out
-    //strike out videos that cant be played
-    //add videos to table
-
-    const urlRowElementList = await Promise.all(focusURLs.map(async url => {
-        const title = await getYoutubeVideoTitle(url)
-        return createURLRowElem(title, url, storageDivId);
-    }))
-
-    urlRowElementList.map(tableRow => {
-        document.getElementById(urlsElemTableId).appendChild(tableRow)
-    })
+	return urlArray
 }
 
+/**
+ * ---------------TRACKS---------------
+ */
+class Tracks {
+
+	constructor(tracks, currentTrack){
+		this.tracks = tracks
+		this.currentTrack = currentTrack
+	}
+
+	addTrack(track){ this.tracks.push(track) }
+
+	removeTrack(){}
+
+	getCurrentTrack(){ return this.currentTrack }
+
+	setCurrentTrack(track){ this.currentTrack = track }
+
+	getTracks(){ return this.tracks; }
+
+	printTracks(){ 
+		this.tracks.forEach(track => {console.log("title " + track.title)})
+	}
+}
 
 
 /**
- * TRACK
+ * ---------------TRACK---------------
  */
 class Track {
-    constructor(title, url, storageDivId){
-        this.storageDiv = document.getElementById(storageDivId)
-        this.storeTrack(title, url)
-    }
+	constructor(title, url){
+		this.title = title
+		this.url = url
+		this.tags = []
+	}
 
-    storeTrack(title, url) {
-        this.storageDiv.setAttribute('title', title)
-        this.storageDiv.setAttribute('url', url)
-    }
+	addTag(tag){
+		this.tags.push(tag)
+	}
 
-    getTitle(){
-        return this.storageDiv.getAttribute('title')
-    }
-
-    getURL(){
-        return this.storageDiv.getAttribute('url')
-    }
-}
-
-class Playlist{
+	removeTag(tag){
+		// this.tags remove tag
+	}
 
 }
-
-
 
 /**
- * FOCUS PLAYER
+ * ---------------PLAYLIST---------------
  */
-class FocusPlayer {
-    constructor(track, containerElementId){
-        this.containerDiv = document.getElementById(containerElementId);
-        this.url = track.getURL();
-        const trackConfig = { attributes: true };
-        const attributeCallback = () => {
-            const currentURL = this.containerDiv.getAttribute('url')
-            this.loadURL(currentURL)
-        }
-        const observer = new MutationObserver(attributeCallback);
-        observer.observe(this.containerDiv, trackConfig);
-        renderReactPlayer(this.containerDiv, { url: this.url, playing: false, controls: true })
-    }
+class Playlist{}
 
-    pause () { renderReactPlayer(this.containerDiv, { url: this.url, playing: false }) }
-    
-    play () { renderReactPlayer(this.containerDiv, { url: this.url, playing: true }) }
+/**
+ * ---------------FOCUS PLAYER---------------
+ */
+class TrackPlayer {
+	constructor(track, containerElementId){
+		this.containerDiv = document.getElementById(containerElementId);
+		this.url = track.url;
+		const trackConfig = { attributes: true };
+		const attributeCallback = () => {
+			const currentURL = this.containerDiv.getAttribute('url')
+			this.loadURL(currentURL)
+		}
+		const observer = new MutationObserver(attributeCallback);
+		observer.observe(this.containerDiv, trackConfig);
+		renderReactPlayer(this.containerDiv, { url: this.url, playing: false, controls: true })
+	}
 
-    loadURL(updatedURL){ 
-        this.url = updatedURL
-        renderReactPlayer(this.containerDiv, { url: updatedURL, playing: true }) 
-    }
+	pause () { renderReactPlayer(this.containerDiv, { url: this.url, playing: false }) }
+	
+	play () { renderReactPlayer(this.containerDiv, { url: this.url, playing: true }) }
+
+	loadURL(updatedURL){ 
+		this.url = updatedURL
+		renderReactPlayer(this.containerDiv, { url: updatedURL, playing: true }) 
+	}
 }
 
-
-function main() {
-    const radioConfig = {
-        focusURLsPath: "./focus.md",
-        containerPlayerElementId: 'containerPlayer',
-        focusURLsElemId: 'focusSongsTable',
-        startingTrackTitle: 'Nintendo 64 jungle mix 02 - Drum & bass, ragga, atmospheric, intelligent dnb, etc',
-        startingTrackURL: 'https://www.youtube.com/watch?v=MGPhF1gwgIs',
-    }
-
-    const track = new Track(
-        radioConfig.startingTrackTitle, 
-        radioConfig.startingTrackURL, 
-        radioConfig.containerPlayerElementId
-    )
-
-    loadURLs(
-        radioConfig.focusURLsPath, 
-        radioConfig.focusURLsElemId,
-        radioConfig.containerPlayerElementId
-    )
-
-    const focusPlayer = new FocusPlayer(track, radioConfig.containerPlayerElementId)
+/**
+ * ---------------MAIN---------------
+ */
+async function main() {
+	const config = {
+		trackURLsPath: "./tracks.md",
+		containerPlayerElementId: 'containerPlayer',
+		trackURLsElemId: 'tracksTable',
+		startingTrackTitle: 'Nintendo 64 jungle mix 02 - Drum & bass, ragga, atmospheric, intelligent dnb, etc',
+		startingTrackURL: 'https://www.youtube.com/watch?v=MGPhF1gwgIs',
+	}
+	
+	const tracks = await createTracks(config.trackURLsPath);
+	tracks.setCurrentTrack(new Track(config.startingTrackTitle, config.startingTrackURL))
+	const trackPlayer = new TrackPlayer(tracks.getCurrentTrack(), config.containerPlayerElementId)
+	createTrackTable(tracks.tracks, config.trackURLsElemId, config.containerPlayerElementId)
+	
 }
 
 main();
-
 
 
 
