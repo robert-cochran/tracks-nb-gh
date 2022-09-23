@@ -41,19 +41,5 @@ app.listen(8080, function () {
   console.log('CORS-enabled web server listening on port 8080')
 })
 
-//TODO Remove the newline from the appendFile function
-//TODO Function that cleans up dead links?
-//TODO function that cleans up duplicate links (or avoids adding it if its a duplicate)
-//TODO function that alphabetises links (more so for radio.js)
-//TODO add send to local tracks and close window option 
-//TODO add visual confirmation that track has been added to the popup player
-//TODO show error if track not sent (i.e. network error, server isnt up, whatever...)
-//TODO add option to startup server from extension and then kill it after?
-//TODO use a package that comes with node https://www.digitalocean.com/community/tutorials/how-to-create-a-web-server-in-node-js-with-the-http-module
-//TODO read this Cache your CORS article https://news.ycombinator.com/item?id=32907234
 
-//TODO add seashells theme, nightmode theme
-
-//TODO function that adds tags and can filter based on tags 
-//TODO function that lets me remove tracks from the list inside the index file (thats a powerful feature to add to a public page so maybe not)?
 
