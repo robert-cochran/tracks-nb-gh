@@ -13,7 +13,7 @@ goals: anonymous/accountless, free, easy music saving and sharing for collecting
 //TODO add option to startup server from extension and then kill it after?
 //TODO use a package that comes with node https://www.digitalocean.com/community/tutorials/how-to-create-a-web-server-in-node-js-with-the-http-module
 //TODO read this Cache your CORS article https://news.ycombinator.com/item?id=32907234
-
+//TODO add an option for the plugin to send it to cache, then have option in player to read from cache and save as a url maybe
 //TODO add seashells theme, nightmode theme, css theme from that open source github hosted blog website
 
 //TODO function that adds tags and can filter based on tags 
@@ -21,7 +21,6 @@ goals: anonymous/accountless, free, easy music saving and sharing for collecting
 
 # High
 - [ ] get extension working to easily save track urls in browser tab to disk
-    
 - [ ] drag and drop feature to import songs from file
 - [ ] export feature to save songs added
 - [ ] TODO filter duplicates out
@@ -32,6 +31,7 @@ goals: anonymous/accountless, free, easy music saving and sharing for collecting
 
 
 # Med
+- [ ] add option to append new track straight to github repo file
 - [ ] have add local options but also save those as a bundle to a external repo
 - [ ] maybe make seperate files and then bundle them up together into a single file that can be dropped into any repo
 - [ ] maybe some easy way to save your playlist to a url (or disk) for use by people easily with git? that way it can be saved as a bookmark!
