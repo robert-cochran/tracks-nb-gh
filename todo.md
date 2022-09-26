@@ -11,7 +11,9 @@ goals: anonymous/accountless, free, easy music saving and sharing for collecting
 //TODO add visual confirmation that track has been added to the popup player
 //TODO show error if track not sent (i.e. network error, server isnt up, whatever...)
 //TODO add option to startup server from extension and then kill it after?
-//TODO use a package that comes with node https://www.digitalocean.com/community/tutorials/how-to-create-a-web-server-in-node-js-with-the-http-module
+//TODO use a package that comes with node 
+    https://github.com/mdn/content/blob/main/files/en-us/learn/server-side/node_server_without_framework/index.md
+    https://www.digitalocean.com/community/tutorials/how-to-create-a-web-server-in-node-js-with-the-http-module
 //TODO read this Cache your CORS article https://news.ycombinator.com/item?id=32907234
 //TODO add an option for the plugin to send it to cache, then have option in player to read from cache and save as a url maybe
 //TODO add seashells theme, nightmode theme, css theme from that open source github hosted blog website

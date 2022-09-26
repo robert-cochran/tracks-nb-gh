@@ -15,3 +15,15 @@ body {
 .page-choice:hover {
   background-color: #cff2f2;
 }
+
+.local-sh {
+  width: 100%;
+  padding: 4px;
+  font-size: 1.5em;
+  text-align: center;
+  cursor: pointer;
+}
+
+.local-sh:hover {
+  background-color: #cff2f2;
+}

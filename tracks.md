@@ -41,3 +41,10 @@ https://www.youtube.com/watch?v=6cp-gVPsHWw
 https://www.youtube.com/watch?v=2TQ4a31VSoI
 https://www.youtube.com/watch?v=KCb5cgnHsQ8
 https://www.youtube.com/watch?v=XoWKya35BNE
+<<<<<<< HEAD
+=======
+https://www.youtube.com/watch?v=-yFeZekJxZ8
+https://www.youtube.com/watch?v=CfPxlb8-ZQ0
+undefined
+about:debugging#/runtime/this-firefox
+>>>>>>> baba73b ([nb] Commit)
