@@ -21,6 +21,8 @@ goals: anonymous/accountless, free, easy music saving and sharing for collecting
 //TODO function that adds tags and can filter based on tags 
 //TODO function that lets me remove tracks from the list inside the index file (thats a powerful feature to add to a public page so maybe not)?
 
+//TODO keyboard command shortcut https://github.com/darktrojan/openwith/blob/master/webextension/manifest.json
+
 # High
 - [ ] get extension working to easily save track urls in browser tab to disk
 - [ ] drag and drop feature to import songs from file

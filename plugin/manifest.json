@@ -1,34 +1,37 @@
 {
 
-  "manifest_version": 2,
-  "name": "bookmarkToDisk",
-  "version": "1.0",
+	"manifest_version": 2,
+	"name": "tracks",
+	"description": "manage local youtube tracks list",
+	"version": "1.0",
 
-  "description": "Sends current url to nb-bookmarks server",
+	"icons": { "48": "icons/gold-album.png" },
 
-  "icons": { "48": "icons/gold-album.png" },
+	"browser_specific_settings": {
+		"gecko": {
+			"id": "tracks@extension.org",
+			"strict_min_version": "50.0"
+		}
+	},
 
-  "browser_action": {
-    "default_icon": {
-      "16": "icons/gold-album.png",
-      "32": "icons/gold-album.png"
-    },
-    "default_popup": "popup/choose_page.html",
-    "browser_style": true
-  },
+	"browser_action": {
+		"default_icon": {
+			"16": "icons/gold-album.png",
+			"32": "icons/gold-album.png"
+		}
+	},
 
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["./server/sendUrlToServer.js"]
-    }
-  ],
+	"background": {
+		"scripts": ["./native-messaging/background/sendNativeMessage.js"]
+	},
+
+	"permissions": [
+		"*://127.0.0.1/*",
+		"*://localhost/*",
+		"tabs",
+		"nativeMessaging"
+	]
   
-  "permissions": [
-    "*://127.0.0.1/*",
-    "*://localhost/*",
-    "tabs"
-  ]
-  
+	
 
 }

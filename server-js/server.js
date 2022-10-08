@@ -44,10 +44,8 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
 app.post('/', function (request, response, next) {
-	const tracksFilePath = '/Users/rob.cochran/sandbox/tracks/tracks.md'
 	console.log(`\nRequest start\nBODY RECEIVED: ${JSON.stringify(request.body)} \nURL RECEIVED: ${request.body.url}`)
-	addTrack(tracksFilePath, request.body.url)
-	console.log("Request end\n")
+	console.log("This is only a test endpoint, no action taken.\nRequest end\n")
 	response.send("\n\n/ POST ACK -- \n\nurl: " + request.body.url)
 })
 
