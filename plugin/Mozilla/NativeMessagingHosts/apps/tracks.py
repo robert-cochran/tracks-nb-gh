@@ -31,8 +31,16 @@ def send_message(encoded_message):
     sys.stdout.buffer.write(encoded_message['content'])
     sys.stdout.buffer.flush()
 
+def append_track(track):
+    file_object = open('/Users/rob.cochran/sandbox/tracks/tracks.md', 'a')
+    file_object.write(track)
+    file_object.close()
+
 while True:
     message = get_message()
+    if "//youtube.com" in message:
+        append_track(message + '\n')
+        send_message(encode_message("youtubeLink!"))
     if message == "ping":
         send_message(encode_message("pong"))
 

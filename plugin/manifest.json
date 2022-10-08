@@ -18,11 +18,23 @@
 		"default_icon": {
 			"16": "icons/gold-album.png",
 			"32": "icons/gold-album.png"
-		}
+		},
+		"default_popup": "./popup/handle-tracks.html",
+		"browser_style": true
 	},
 
+	"content_scripts": [
+		{
+			"matches": ["<all_urls>"],
+			"js": ["./content/handle-tracks.js"]
+		}
+	],
+
 	"background": {
-		"scripts": ["./native-messaging/background/sendNativeMessage.js"]
+		"scripts": [
+			"./background/sendNativeMessage.js"
+		],
+		"persistent": true
 	},
 
 	"permissions": [
@@ -32,6 +44,5 @@
 		"nativeMessaging"
 	]
   
-	
 
 }

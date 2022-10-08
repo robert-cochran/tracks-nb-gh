@@ -13,3 +13,10 @@
 	"default_popup": "./popup/choose_page.html",
 	"browser_style": true
 },
+
+"permissions": [
+	"*://127.0.0.1/*",
+	"*://localhost/*",
+	"tabs",
+	"nativeMessaging"
+]

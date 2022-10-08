@@ -1,8 +1,11 @@
 // runtime.connectNative
+// https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/connectNative
+
+
 /*
 On startup, connect to the "ping_pong" app.
 */
-let port = browser.runtime.connectNative("ping_pong");
+let port = browser.runtime.connectNative("tracks");
 
 /*
 Listen for messages from the app.
