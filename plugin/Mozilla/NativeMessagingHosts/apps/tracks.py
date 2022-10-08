@@ -31,6 +31,14 @@ def send_message(encoded_message):
     sys.stdout.buffer.write(encoded_message['content'])
     sys.stdout.buffer.flush()
 
+def duplicates_check(track, filepath):
+    with open(filepath, "r") as file_lines:
+        for line in file_lines:
+            if track == line:
+                return true
+    return false
+
+
 def append_track(track):
     file_object = open('/Users/rob.cochran/sandbox/tracks/tracks.md', 'a')
     file_object.write(track)
@@ -38,9 +46,9 @@ def append_track(track):
 
 while True:
     message = get_message()
-    if "//youtube.com" in message:
+    if "youtube.com" in message:
         append_track(message + '\n')
-        send_message(encode_message("youtubeLink!"))
+        send_message(encode_message("youtube link added!"))
     if message == "ping":
         send_message(encode_message("pong"))
 

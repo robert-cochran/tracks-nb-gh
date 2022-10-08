@@ -21,3 +21,5 @@ https://github.com/mdn/webextensions-examples/tree/master/export-helpers
 https://github.com/darktrojan/openwith/blob/master/webextension/manifest.json
 https://github.com/darktrojan/openwith/blob/f80cb8e61dfe79079e69dab206af5e55bd0e250d/webextension/native/open_with_mac.py
 
+# All Mozilla Example Extensions with list of API's used by them
+https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Examples

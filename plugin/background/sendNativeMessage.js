@@ -1,10 +1,10 @@
 // // runtime.sendNativeMessage
 function onResponse(response) {
-	console.log(`Received ${response}`);
+	console.log(`Background Received ${JSON.stringify(response)}`);
 }
 
 function onError(error) {
-	console.log(`Error: ${error}`);
+	console.log(`Background Error: ${error}`);
 }
 
 /* On a click on the browser action, send the app a message. */
@@ -23,10 +23,10 @@ browser.browserAction.onClicked.addListener(() => {
 
 function handleMessage(request, sender, sendResponse) {
 	console.log(
-		`A content script sent a message: \n
-		message: ${request.greeting} \n
-		url: ${request.url} \n
-		sender: ${sender} \n`
+		`A content script sent a message: 
+		url: ${request.url} `
+		// message: ${request.greeting} 
+		// sender: ${JSON.stringify(sender)} `
 	);
 	sendResponse({ response: "Response from background script" });
 

@@ -6,18 +6,30 @@
 	</head>
 	<body>
 		
-		<div class="post-url" class="pongpong" id="pingpongid">pingpong</div>
+		<h1>Save Track URL</h1>
 		<div class="post-url" id="local-tracks-endpoint">send url to local file storage</div>
-		<div class="post-url" id="local-tracks-endpoint">send url to local file storage and close tab</div>
+		<div class="post-url" id="local-tracks-endpoint-close">send url to local file storage and close tab</div>
 		<div class="post-url" id="browser-cache-endpoint">send url to browser cache</div>
 		<div class="post-url" id="extension-cache-endpoint">send url to extension cache</div>
 		<div class="post-url" id="github-endpoint">send url to github repo file (appended)</div>
 		
+		<h1>Load Tracks</h1>
+		<div class="load-tracks" >Load tracks from local file</div>
+		<div class="load-tracks" >Load tracks from url (cors?)</div>
 
+		<h1>Dev Test</h1>
+		<div class="post-url" id="ping">ping</div>
+
+		<h1>Config</h1>
+		<label for="close-tab-on-save">Close tab after saving url</label>
+		<input type="checkbox" id="close-tab-on-save">
+
+		<h2>Notes</h2>
+		<p>Only works for youtube links</p>
 		<!-- <form>
 				<label for="categories">categories</label>
 				<input is="categories"></input>
 		</form> -->
-		<script src="../content/handle-tracks.js"></script>
+		<script src="../content/handleTracks.js"></script>
 	</body>
 </html>
