@@ -1,7 +1,0 @@
-{
-    "name": "tracks",
-    "description": "Example host for native messaging",
-    "path": "/Users/rob.cochran/Library/Application Support/Mozilla/NativeMessagingHosts/tracks.py",
-    "type": "stdio",
-    "allowed_extensions": [ "tracks@example.org" ]
-}
