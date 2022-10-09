@@ -3,7 +3,7 @@ todos
 goals: anonymous/accountless, free, easy music saving and sharing for collecting playlists quickly and playing music easily. make youtubes music great again.
   
 # Unsorted
-//TODO Remove the newline from the appendFile function
+//TODO if if move to extension generated index (isntead of github pages) how can i ensure the same level of data persistence like hosting it on github would provide?
 //TODO Function that cleans up dead links?
 //TODO function that cleans up duplicate links (or avoids adding it if its a duplicate)
 //TODO function that alphabetises links (more so for radio.js)
@@ -35,6 +35,10 @@ goals: anonymous/accountless, free, easy music saving and sharing for collecting
 
 
 # Med
+- [ ] mini player in the extension to pause/play
+- [ ] queue up tracks
+- [ ] repeat/loop tracks
+- [ ] create playlists
 - [ ] add option to append new track straight to github repo file
 - [ ] have add local options but also save those as a bundle to a external repo
 - [ ] maybe make seperate files and then bundle them up together into a single file that can be dropped into any repo

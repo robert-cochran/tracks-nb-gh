@@ -32,3 +32,7 @@ want to find keyless api for node
 
 ## DEBUGGING BOOKMARK
 // about:debugging#/runtime/this-firefox 
+
+
+# onboarding
+// https://extensionworkshop.com/documentation/develop/onboard-upboard-offboard-users/
