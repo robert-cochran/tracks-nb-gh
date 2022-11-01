@@ -41,17 +41,11 @@ https://www.youtube.com/watch?v=6cp-gVPsHWw
 https://www.youtube.com/watch?v=2TQ4a31VSoI
 https://www.youtube.com/watch?v=KCb5cgnHsQ8
 https://www.youtube.com/watch?v=XoWKya35BNE
-<<<<<<< HEAD
 https://www.youtube.com/watch?v=-yFeZekJxZ8
 https://www.youtube.com/watch?v=CfPxlb8-ZQ0
 https://www.youtube.com/watch?v=hM9u0m-yP0o
 https://www.youtube.com/watch?v=XjhzXzaikpU
 https://www.youtube.com/watch?v=cGubVBaxwqQ
 https://www.youtube.com/watch?v=8kJMCkqJRz0
-Content to append.
-=======
-
 https://www.youtube.com/watch\?v\=WXnWfx6bIVE
->>>>>>> ae73b31 ([nb] Edit: tracks.md)
-
 https://www.youtube.com/watch\?v\=WXnWfx6bIVE
