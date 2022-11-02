@@ -65,7 +65,7 @@ async function createTrackTable(tracks, tableContainerId, storageDivId){
  * ------------TRACKS---------------
  */
 
- async function createTracks(urlsPath){
+async function createTracks(urlsPath){
 	const urls = await loadURLsFromFilePath(urlsPath);
 	
 	const tracksArray = await Promise.all(urls.map(async url => {
