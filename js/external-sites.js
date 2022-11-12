@@ -35,9 +35,7 @@ function createLinkRow(namesAndLinks){
 		}
 		row.appendChild(createLinkElement(namesAndLinks[i-1], namesAndLinks[i]))
 		row.append
-		//TODO append the '-' character between 'a' tags
 		i+=2
-		//TODO end with a <br>
 	}
 	return row;
 }
