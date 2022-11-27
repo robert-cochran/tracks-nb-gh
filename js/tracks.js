@@ -35,6 +35,9 @@ async function loadURLsFromFilePath(urlsPath) {
 	return urlArray
 }
 
+function alphabetizeTracks(){
+	
+}
 
 class Tracks {
 
@@ -52,6 +55,8 @@ class Tracks {
 	setCurrentTrack(track){ this.currentTrack = track }
 
 	getTracks(){ return this.tracks; }
+
+	reorder
 
 	printTracks(){ 
 		this.tracks.forEach(track => {console.log("title " + track.title)})

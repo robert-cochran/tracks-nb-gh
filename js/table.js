@@ -1,3 +1,5 @@
+import {createLinkElement} from './elements.js';
+
 function createURLRowElem(title, url, storageDivId) {
 	//storage
 	const storageDiv = document.getElementById(storageDivId)
@@ -31,4 +33,25 @@ export async function createTrackTable(tracks, tableContainerId, storageDivId){
 	trackRows.map(tableRow => {
 		document.getElementById(tableContainerId).appendChild(tableRow)
 	})
+}
+
+export function createLinkRow(rowContents){
+	const allNames = rowContents.filter((v,i) => !(i%2))
+	const externalSiteName = allNames.shift();
+	const allLinks = rowContents.filter((v,i) => i%2)
+	const externalSiteLink = allLinks.shift();
+
+	const row = document.createElement("tr");
+	row.appendChild(createLinkElement(externalSiteName, externalSiteLink))
+	allNames.forEach((affiliatedSiteName, index) => {
+		row.insertAdjacentText("beforeend", " - ");
+		row.appendChild(createLinkElement(affiliatedSiteName, allLinks[index]))
+	})
+	// let i = 0;
+	// while(i < names.length){
+	// 	if(i>=1){  }
+		
+	// 	i++
+	// }
+	return row;
 }
