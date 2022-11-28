@@ -26,7 +26,6 @@ function createURLRowElem(title, url, storageDivId) {
 
 export async function createTrackTable(tracks, tableContainerId, storageDivId){
 	const trackRows = await Promise.all(tracks.map(async track => {
-		// console.log(track.title)
 		return createURLRowElem(track.title, track.url, storageDivId);
 	}))
 
@@ -47,11 +46,5 @@ export function createLinkRow(rowContents){
 		row.insertAdjacentText("beforeend", " - ");
 		row.appendChild(createLinkElement(affiliatedSiteName, allLinks[index]))
 	})
-	// let i = 0;
-	// while(i < names.length){
-	// 	if(i>=1){  }
-		
-	// 	i++
-	// }
 	return row;
 }
