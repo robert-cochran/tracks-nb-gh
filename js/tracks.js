@@ -1,5 +1,5 @@
 import {Track} from './track.js'
-
+import { getYoutubeVideoTitle } from './youtube-api.js';
 
 export async function createTracks(urlsPath){
 	const urls = await loadURLsFromFilePath(urlsPath);
@@ -14,12 +14,6 @@ export async function createTracks(urlsPath){
 	const tracks = new Tracks(tracksArray);
 
 	return tracks
-}
-
-async function getYoutubeVideoTitle(url){
-	const response = await fetch('https://noembed.com/embed?url=' + url);
-	const jsonData = await response.json();
-	return jsonData.title;
 }
 
 async function loadURLsFromFilePath(urlsPath) {
@@ -39,24 +33,36 @@ function alphabetizeTracks(){
 	
 }
 
+
 class Tracks {
 
+	//tracks is an array
+	//currentTrack is a Track object
 	constructor(tracks, currentTrack){
 		this.tracks = tracks
 		this.currentTrack = currentTrack
 	}
 
-	addTrack(track){ this.tracks.push(track) }
+	addTrack(track){ 
+		this.tracks.push(track) 
+	}
 
 	removeTrack(){}
 
-	getCurrentTrack(){ return this.currentTrack }
+	getCurrentTrack(){ 
+		return this.currentTrack 
+	}
 
-	setCurrentTrack(track){ this.currentTrack = track }
+	setCurrentTrack(track){ 
+		this.currentTrack = track 
+	}
 
-	getTracks(){ return this.tracks; }
+	getTracks(){ 
+		return this.tracks; 
+	}
 
-	reorder
+	reorder(){
+	}
 
 	printTracks(){ 
 		this.tracks.forEach(track => {console.log("title " + track.title)})
