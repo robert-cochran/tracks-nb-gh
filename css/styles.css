@@ -1,0 +1,9 @@
+/* https://github.com/milofultz/tablatal_parser */
+/* https://github.com/hundredrabbits/Themes/tree/master/themes */
+
+tr {
+	border: 10px solid;
+}
+tr:hover {
+	background-color: lightblue;
+}
