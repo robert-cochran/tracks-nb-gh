@@ -7,3 +7,92 @@ tr {
 tr:hover {
 	background-color: lightblue;
 }
+
+:root {
+	--color-bg: var(--background);
+  
+	--color-menu: var(--f_high);
+	--color-menubg: var(--b_low);
+	--color-menuascent: var(--f_med);
+  
+	--color-item: var(--f_high);
+	--color-itembg: var(--b_low);
+	--color-itemascent: var(--f_med);
+  
+	--color-image: #fff;                /*Text overlaying an image item*/
+	--color-imagedarken: #000;          /*Overlay on image as text background */
+  
+	--color-page-bg: #000;
+	--color-page-input: #111;
+	--color-page-i: #222;               /*idle*/
+	--color-page-e: #333;               /*enabled*/
+	--color-page-a: #666;               /*ascent*/
+  
+	--alpha-darken: 0.6;
+	--alpha-idleicon: 0.2;
+	--alpha-idle: 0.4;
+	--alpha-enabledicon: 0.4;
+	--alpha-enabled: 1.0;
+	--alpha-ascent: 1.0;
+  
+	--size-menu: 150px;
+	--size-menu-item-sepv: 14px;        /*vertical space between menu items*/
+	--size-menu-item-seph: 10px;        /*horizontal space between menu item count and icon*/
+	--size-menu-itemgroup-sepv: 30px;   /*vertical space between menu types (types to terms, terms to tags)*/
+	--size-menu-tag-sepv: 10px;         /*space between tag items*/
+  
+	--size-grid-gutter: 20px;
+	--size-grid-column: 350px;
+  
+	--size-item-corner: 10px;
+	--size-item-elem-padding: 1em;      /*vertical space between grid item internal elements (tags, notes, quotes etc)*/
+	--size-item-elem-sep: 0.75em;       /*horizontal space between item element icon and element text (tag icon and tags)*/
+  
+	--size-font-title: 1em;
+	--size-font-body: 0.8em;
+	--size-font-menutypes: 1em;
+	--size-font-menutags: 0.8em;
+	--size-font-bodytypes: 1em;         /*font size of type icon/count*/
+  
+	--cursor-expandImage: zoom-in;
+	--cursor-minimizeImage: zoom-out;
+  }
+  
+  * {
+	box-sizing: border-box;
+  }
+  html {
+	  /* font-family: 'Monaco', 'Andale Mono', 'Deja Vu Sans Mono', 'Consolas', monospace; */
+	  background: var(--background); 
+	  padding: 0em;
+	  margin: 0; 
+	overflow-y: scroll; 
+  }
+  body {
+	  padding: 0em;
+	  margin: 0; 
+  }
+  ::selection {
+	background: var(--color-itemascent);
+	color: var(--color-itembg)
+  }
+  
+  a:active, a:focus {
+	outline:0;
+	border: none;
+  }
+
+  
+body { background:var(--background) !important; }
+#picker { background-color:var(--b_inv) !important; color:var(--f_inv) !important; }
+#picker:before { color:var(--f_med) !important; }
+#picker input::placeholder { color:var(--f_med) !important; }
+.fh { color:var(--f_high) !important; stroke:var(--f_high) !important; }
+.fm { color:var(--f_med) !important; stroke:var(--f_med) !important; }
+.fl { color:var(--f_low) !important; stroke:var(--f_low) !important; }
+.f_inv { color:var(--f_inv) !important; stroke:var(--f_inv) !important; }
+.bh { background:var(--b_high) !important; }
+.bm { background:var(--b_med) !important; }
+.bl { background:var(--b_low) !important; }
+.b_inv { background:var(--b_inv) !important; }
+.icon { color:var(--f_high) !important; stroke:var(--f_high) !important; }

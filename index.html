@@ -5,7 +5,7 @@
         <script src='https://unpkg.com/react-player/dist/ReactPlayer.standalone.js'></script>
 		<script type="text/javascript" src="scripts/lib/theme.js"></script>
         <link rel="stylesheet" href="css/styles.css">
-        
+		<script type="text/javascript" src="js/theme.js"></script>
     </head>
     <body>
         
@@ -15,10 +15,6 @@
 				<div id="containerPlayer" title="" url=""></div>
 
 			<h2>Tracks</h2>   
-				<!-- <label for="trackListInput">Input New Tracklist URL</label>
-				<input type="text" id="trackListInput" name="trackListInput">
-				<button onclick="loadURLsFromFilePath(document.getElementById('trackListInput').value)">Load List From URL</button>
-				<br><br> -->
 				<table id="tracksTable">
 					<tr> 
 					<th>Track</th>
@@ -26,17 +22,12 @@
 					</tr>
 				</table> 
 
-
 			<h2>External Sites</h2>
 				<table id="externalSites">
-					<!-- <a href="https://incoherency.co.uk/blog/stories/nightdrive.html">Nightdrive</a> - 
-						<a href="https://news.ycombinator.com/item?id=32947303">HN</a> - 
-						<a href="https://github.com/jes/nightdrive">Code</a> - 
-					<br> -->
 				</table>
-				<!-- <script src="./script.track-player.js"></script> -->
-				<!-- <script src="./script.external-sites.js"></script> -->
 				<script type="module" src="./main.js"></script>
+				<script> let theme = new Theme(); theme.install(); theme.start(); </script>
+				
     </body>
 </html>
 
