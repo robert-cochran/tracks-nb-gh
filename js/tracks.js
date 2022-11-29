@@ -7,11 +7,11 @@ export async function createTracks(urlsPath){
 	const tracksArray = await Promise.all(urls.map(async url => {
 		const title = await getYoutubeVideoTitle(url)
 		const track = new Track(title, url)
-		// console.log(track.title)
 		return track
 	}))
 
-	const tracks = new Tracks(tracksArray);
+	const tracks = new Tracks(tracksArray, tracksArray[12]);
+	tracks.alphabetizeTracks();
 
 	return tracks
 }
@@ -29,14 +29,26 @@ async function loadURLsFromFilePath(urlsPath) {
 	return urlArray
 }
 
-function alphabetizeTracks(){
+export function alphabetizeTracks(tracks){
 	
+	//tracks is an array
+	tracks.sort((trackA, trackB) => { 
+		if (trackA.title < trackB.title){
+			return -1;
+		}	
+		if (trackB.title < trackA.title){
+			return 1;
+		}
+		else {return 0;}
+	})
+
+	return tracks;
 }
 
 
 class Tracks {
 
-	//tracks is an array
+	//tracks is an array of Track objects
 	//currentTrack is a Track object
 	constructor(tracks, currentTrack){
 		this.tracks = tracks
@@ -61,7 +73,16 @@ class Tracks {
 		return this.tracks; 
 	}
 
-	reorder(){
+	alphabetizeTracks(){
+		this.tracks.sort((trackA, trackB) => { 
+			if (trackA.title < trackB.title){
+				return -1;
+			}	
+			if (trackB.title < trackA.title){
+				return 1;
+			}
+			else {return 0;}
+		})
 	}
 
 	printTracks(){ 

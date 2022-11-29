@@ -58,29 +58,29 @@ tr:hover {
 	--cursor-minimizeImage: zoom-out;
   }
   
-  * {
+* {
 	box-sizing: border-box;
-  }
-  html {
-	  /* font-family: 'Monaco', 'Andale Mono', 'Deja Vu Sans Mono', 'Consolas', monospace; */
-	  background: var(--background); 
-	  padding: 0em;
-	  margin: 0; 
+}
+html {
+	/* font-family: 'Monaco', 'Andale Mono', 'Deja Vu Sans Mono', 'Consolas', monospace; */
+	background: var(--background); 
+	padding: 0em;
+	margin: 0; 
 	overflow-y: scroll; 
-  }
-  body {
-	  padding: 0em;
-	  margin: 0; 
-  }
-  ::selection {
+}
+body {
+	padding: 0em;
+	margin: 0; 
+}
+::selection {
 	background: var(--color-itemascent);
 	color: var(--color-itembg)
-  }
-  
-  a:active, a:focus {
+}
+
+a:active, a:focus {
 	outline:0;
 	border: none;
-  }
+}
 
   
 body { background:var(--background) !important; }
