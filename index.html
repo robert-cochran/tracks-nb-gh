@@ -3,30 +3,36 @@
     <head>
 		<link rel="icon" type="image/x-icon" href="favicon.ico">
         <script src='https://unpkg.com/react-player/dist/ReactPlayer.standalone.js'></script>
-		<script type="text/javascript" src="scripts/lib/theme.js"></script>
+		<script type="text/javascript" src="js/themes/lib/theme.js"></script>
+		<script type="text/javascript" src="js/themes/color.js"></script>
+		<script type="text/javascript" src="js/themes/benchmark.js"></script>
         <link rel="stylesheet" href="css/styles.css">
-		<script type="text/javascript" src="js/theme.js"></script>
+		<!-- <link rel="stylesheet" type="text/css" href="css/main.css"/> -->
+		<link rel="stylesheet" type="text/css" href="css/theme.css"/>
     </head>
     <body>
         
         <h1>Focus Radio</h1>
         
-			<h2>Player</h2>
-				<div id="containerPlayer" title="" url=""></div>
+		<h2>Player</h2>
+		<div id="containerPlayer" title="" url=""></div>
 
-			<h2>Tracks</h2>   
-				<table id="tracksTable">
-					<tr> 
-					<th>Track</th>
-					<th>Load</th>
-					</tr>
-				</table> 
+		<h2>Tracks</h2>   
+		<table id="tracksTable">
+			<tr> 
+				<th>Track</th> <th>Load</th>
+			</tr>
+		</table> 
 
-			<h2>External Sites</h2>
-				<table id="externalSites">
-				</table>
-				<script type="module" src="./main.js"></script>
-				<script> let theme = new Theme(); theme.install(); theme.start(); </script>
+		<h2>External Sites</h2>
+		<table id="externalSites">
+		</table>
+		<script type="module" src="./main.js"></script>
+		<!-- <script> 
+			let theme = new Theme(); 
+			theme.install(document.body); 
+			theme.start(); 
+		</script> -->
 				
     </body>
 </html>

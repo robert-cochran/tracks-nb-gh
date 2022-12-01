@@ -11,7 +11,6 @@ export async function createTracks(urlsPath){
 	}))
 
 	const tracks = new Tracks(tracksArray, tracksArray[12]);
-	tracks.alphabetizeTracks();
 
 	return tracks
 }
@@ -25,26 +24,8 @@ async function loadURLsFromFilePath(urlsPath) {
 		return url.length > 1
 	})
 	
-
 	return urlArray
 }
-
-export function alphabetizeTracks(tracks){
-	
-	//tracks is an array
-	tracks.sort((trackA, trackB) => { 
-		if (trackA.title < trackB.title){
-			return -1;
-		}	
-		if (trackB.title < trackA.title){
-			return 1;
-		}
-		else {return 0;}
-	})
-
-	return tracks;
-}
-
 
 class Tracks {
 
@@ -52,6 +33,7 @@ class Tracks {
 	//currentTrack is a Track object
 	constructor(tracks, currentTrack){
 		this.tracks = tracks
+		this.tracksAddedOldestToNewest = [...tracks]
 		this.currentTrack = currentTrack
 	}
 
@@ -71,18 +53,6 @@ class Tracks {
 
 	getTracks(){ 
 		return this.tracks; 
-	}
-
-	alphabetizeTracks(){
-		this.tracks.sort((trackA, trackB) => { 
-			if (trackA.title < trackB.title){
-				return -1;
-			}	
-			if (trackB.title < trackA.title){
-				return 1;
-			}
-			else {return 0;}
-		})
 	}
 
 	printTracks(){ 

@@ -106,6 +106,9 @@ function Theme (client) {
 
   this.drop = (e) => {
     e.preventDefault()
+    console.log(e)
+    console.log(e.dataTransfer)
+    console.log(e.dataTransfer.files)
     const file = e.dataTransfer.files[0]
     if (file.name.indexOf('.svg') > -1) {
       this.read(file, this.load)

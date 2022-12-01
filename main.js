@@ -8,16 +8,19 @@ import {createExternalSitesTable} from './js/external-sites.js'
 async function main() {
 	const config = {
 		trackURLsPath: "./tracks.md",
-		containerPlayerElementId: 'containerPlayer',
 		trackURLsElemId: 'tracksTable',
+		playerContainerElementId: 'containerPlayer',
+		externalSitesPath: './external-sites.md',
+		externalSitesElemId: "externalSites"
 	}
-	const tracks = await createTracks(config.trackURLsPath);
-	const trackPlayer = new TrackPlayer(tracks.getCurrentTrack(), config.containerPlayerElementId)
-	createTrackTable(tracks.tracks, config.trackURLsElemId, config.containerPlayerElementId)
 	
-	const externalSites = await readLinesFromFile('./external-sites.md');
+	const tracks = await createTracks(config.trackURLsPath);
+	const trackPlayer = new TrackPlayer(tracks.getCurrentTrack(), config.playerContainerElementId)
+	createTrackTable(tracks.tracks, config.trackURLsElemId, config.playerContainerElementId)
+	
+	const externalSites = await readLinesFromFile(config.externalSitesPath);
 	const externalSitesArray = parseStringByDelimiter(externalSites)
-	createExternalSitesTable("externalSites", externalSitesArray);
+	createExternalSitesTable(config.externalSitesElemId, externalSitesArray);
 }
 
 main();
