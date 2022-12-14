@@ -44,6 +44,6 @@ export async function getLiveVideoStatus(url){
 	//returns boolean, true if video is a live video
 }
 
-export async function getPlayableStatus(){
+export async function getPlayableStatus(url){
 	
 }

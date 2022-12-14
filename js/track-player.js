@@ -46,7 +46,7 @@ export class TrackPlayer {
 	}
 }
 
-export function checkVideoPlayableStatus(url){
+export function isVideoPlayable(url){
 	console.log(url)
 	try {
 		console.log(renderReactPlayer("div", { url: url, playing: false }))

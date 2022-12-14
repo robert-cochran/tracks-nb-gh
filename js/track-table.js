@@ -1,5 +1,5 @@
 import { sortTableAlphabetically, sortTableByIndex } from './table.js';
-import { checkVideoPlayableStatus } from './track-player.js';
+import { isVideoPlayable } from './track-player.js';
 // import { getPlayableStatus } from './youtube-api.js';
 
 export async function createTrackTable(tracks, tableContainerId, storageDivId){
@@ -7,8 +7,12 @@ export async function createTrackTable(tracks, tableContainerId, storageDivId){
 		return createTrackRow(track.title, track.url, storageDivId, index);
 	}))
 
-	document.getElementById(tableContainerId).insertAdjacentElement("beforebegin",createSortingButtons("tracksTable"))
-	document.getElementById(tableContainerId).insertAdjacentElement("beforebegin",createCheckPlayableVideoButton("tracksTable"))
+	document
+		.getElementById(tableContainerId)
+		.insertAdjacentElement("beforebegin",createSortingButtons("tracksTable"))
+	document
+		.getElementById(tableContainerId)
+		.insertAdjacentElement("beforebegin",createCheckPlayableVideosButton("tracksTable"))
 
 	trackRows.map(tableRow => {
 		document.getElementById(tableContainerId).appendChild(tableRow)
@@ -44,7 +48,7 @@ function createTrackRow(title, url, storageDivId, index) {
 	return row;
 }
 
-export function createCheckPlayableVideoButton(tableId){
+export function createCheckPlayableVideosButton(tableId){
 	const buttonContainer = document.createElement('div')
 	buttonContainer.style.display = "flex"
 	buttonContainer.style.justifyContent = "justify-left"
@@ -65,13 +69,9 @@ function crossOutUnplayableVideoRows(tableId){
 	const table = document.getElementById(tableId)
 	const rows = table.rows;
 	for (let row of rows){
-		if(row.title === 'undefined'){
-			row.style.color = "red"
-		}
-		// console.log(row.getAttribute("title"))
-		// console.log(row.getAttribute("url"))
-		if (!checkVideoPlayableStatus(row.getAttribute("url"))){
-			
+		if (!isVideoPlayable(row.getAttribute("url"))){
+			// row.style.color = "grey"
+			// row.style.textDecoration = "line-through"
 		}
 	}
 }

@@ -10,7 +10,7 @@ export async function createTracks(urlsPath){
 		return track
 	}))
 
-	const tracks = new Tracks(tracksArray, tracksArray[12]);
+	const tracks = new Tracks(tracksArray, tracksArray[6]);
 
 	return tracks
 }
