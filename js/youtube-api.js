@@ -43,3 +43,7 @@ export async function getLiveVideoStatus(url){
 	// this node function returns live info https://www.npmjs.com/package/youtube-search-api
 	//returns boolean, true if video is a live video
 }
+
+export async function getPlayableStatus(){
+	
+}

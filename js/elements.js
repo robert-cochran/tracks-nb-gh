@@ -4,3 +4,4 @@ export function createLinkElement(name, link) {
 	aTag.href = link
 	return aTag;
 }
+
