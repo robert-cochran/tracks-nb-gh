@@ -102,4 +102,3 @@ https://www.youtube.com/watch?v=zlqa2UH4DFU
 https://www.youtube.com/watch?v=_7tPMgKJcuA
 https://www.youtube.com/watch?v=Koq_6Z_oRBc
 https://www.youtube.com/watch?v=kyrdA1geHmg
-https://www.youtube.com/watch?v=6-8Zug26vjA
