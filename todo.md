@@ -3,6 +3,8 @@ todos
 goals: anonymous/accountless, free, easy music saving and sharing for collecting playlists quickly and playing music easily. make youtubes music great again.
   
 # Unsorted
+//TODO some duplicates are still in the track list, why?
+//TODO Identify the currently playing track somehow (green background, bold text, etc?)
 //TODO if if move to extension generated index (isntead of github pages) how can i ensure the same level of data persistence like hosting it on github would provide?
     //whatever I do for tracks I could do for external sites, store it as a similar data structure somewhere
 //TODO fix some links not working inside the catalog index.html, requesting to be viewed in youtube (e.g. macroblank) but doesnt happen when played from github pages site

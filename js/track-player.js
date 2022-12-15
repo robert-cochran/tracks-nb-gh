@@ -48,8 +48,9 @@ export class TrackPlayer {
 
 export function isVideoPlayable(url){
 	console.log(url)
+	const div = document.createElement("div")
 	try {
-		console.log(renderReactPlayer("div", { url: url, playing: false }))
+		console.log(renderReactPlayer(div, { url: url, playing: true }))
 	} catch (err) {
 		console.log(err)
 	}
