@@ -1,15 +1,15 @@
-import { sortTableAlphabetically, sortTableByIndex } from './table.js';
+import { sortTableAlphabetically, sortTableByIndex, exportTracksToUrlArray } from './table.js';
 import { isVideoPlayable } from './track-player.js';
 import { importTracksFromBookmark, exportTracksToBookmark } from './bookmarks.js';
-import { importTracksFromLocalStorage, exportLocalStorageToFile, saveToLocalStorage } from './local-storage.js';
-import { importTracksFromFile, exportTracksToFile } from './file-system-interface.js';
+import { importTracksFromLocalStorage, exportLocalStorageToFile, saveToLocalStorage, saveCurrentTrackToLocalStorage } from './local-storage.js';
+import { importTracksFromFile, exportTracksToFile } from './file-system.js';
 import { createButton, createButtonContainer } from './elements/buttons.js';
 // import { getPlayableStatus } from './youtube-api.js';
 
-export async function createTrackTable(tracks, tableContainerId, storageDivId){
+export async function createTrackTable(tracks, tableContainerId){ //}, storageDivId){
 	const trackRows = await Promise.all(tracks.map(async (track, index) => {
 		saveToLocalStorage(index, track.url)
-		return createTrackRow(track.title, track.url, storageDivId, index);
+		return createTrackRow(track.title, track.url, index); //storageDivId,
 	}))
 
 	document.getElementById(tableContainerId)
@@ -31,9 +31,9 @@ export async function createTrackTable(tracks, tableContainerId, storageDivId){
 	saveToLocalStorage('tracks', exportTracksToUrlArray(tableContainerId))
 }
 
-function createTrackRow(title, url, storageDivId, index) {
+function createTrackRow(title, url, index) { //storageDivId,
 	//storage
-	const storageDiv = document.getElementById(storageDivId)
+	// const storageDiv = document.getElementById(storageDivId)
 
 	//tableRow
 	const row = document.createElement('tr')
@@ -46,8 +46,10 @@ function createTrackRow(title, url, storageDivId, index) {
 	const playButtonElem = document.createElement('button')
 	playButtonElem.addEventListener("click", () => { 
 		//ReactPlayer reads playerContainers attributes to determine what to play
-		storageDiv.setAttribute('currentTrackTitle', title);
-		storageDiv.setAttribute('currentTrackUrl', url);
+		// storageDiv.setAttribute('currentTrackTitle', title);
+		// storageDiv.setAttribute('currentTrackUrl', url);
+		saveCurrentTrackToLocalStorage(title, url);
+
 		document.querySelector("tr[active='true']")?.setAttribute('active', 'false')
 		document.querySelector(`tr[url='${url}']`).setAttribute('active', 'true')
 	})
@@ -111,9 +113,10 @@ export function createImportTracksButtons(tableId){
 
 export function createExportTracksButtons(tableId){
 	const buttonContainer = createButtonContainer('div', 'flex', 'jusify-left');
-	buttonContainer.appendChild(createButton("Save Tracks in Local Storage to File", exportLocalStorageToFile, exportTracksToElementArray(tableId)))
-	buttonContainer.appendChild(createButton("Save Tracks to Bookmark", exportTracksToBookmark, exportTracksToElementArray(tableId)))
-	buttonContainer.appendChild(createButton("Save Tracks to File", exportTracksToFile, exportTracksToElementArray(tableId)))
+	buttonContainer.appendChild(createButton("Save Tracks in Local Storage to File", exportLocalStorageToFile, 'tracks'))
+	buttonContainer.appendChild(createButton("Save Tracks to Bookmark", exportTracksToBookmark, tableId))
+	buttonContainer.appendChild(createButton("Save Tracks to File", exportTracksToFile, tableId))
+	// buttonContainer.appendChild(createButton("[TEST] Save Tracks to Now Playing", saveToLocalStorageCurrentTrack, null))
 	return buttonContainer;
 }
 
@@ -121,19 +124,10 @@ function importTracksFromUrlFetch(tableId){
 	console.log("to be written")
 }
 
-function exportTracksToElementArray(tableId){
-	const tracksTable = document.getElementById(tableId);
-	const trackRows = [...tracksTable.getElementsByTagName('tr')];
-	trackRows.shift();
-	return trackRows;
+function getUrlFromStorageDiv(divId){
+	console.log("Getting url from storage div")
+	const url = document.getElementById(divId).getAttribute("currentTrackUrl");
+	console.log("url from storage div " + url)
+	return url;
 }
 
-function exportTracksToUrlArray(tableId){
-	const tracksTable = document.getElementById(tableId);
-	const trackRows = [...tracksTable.getElementsByTagName('tr')];
-	trackRows.shift();
-	const urls = trackRows.map(htmlTrackElem => {
-		return htmlTrackElem.getAttribute("url")
-	})
-	return urls;
-}
