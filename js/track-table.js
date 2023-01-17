@@ -6,10 +6,10 @@ import { importTracksFromFile, exportTracksToFile } from './file-system.js';
 import { createButton, createButtonContainer } from './elements/buttons.js';
 // import { getPlayableStatus } from './youtube-api.js';
 
-export async function createTrackTable(tracks, tableContainerId){ //}, storageDivId){
+export async function createTrackTable(tracks, tableContainerId){ 
 	const trackRows = await Promise.all(tracks.map(async (track, index) => {
 		saveToLocalStorage(index, track.url)
-		return createTrackRow(track.title, track.url, index); //storageDivId,
+		return createTrackRow(track.title, track.url, index); 
 	}))
 
 	document.getElementById(tableContainerId)
@@ -31,10 +31,7 @@ export async function createTrackTable(tracks, tableContainerId){ //}, storageDi
 	saveToLocalStorage('tracks', exportTracksToUrlArray(tableContainerId))
 }
 
-function createTrackRow(title, url, index) { //storageDivId,
-	//storage
-	// const storageDiv = document.getElementById(storageDivId)
-
+function createTrackRow(title, url, index) {
 	//tableRow
 	const row = document.createElement('tr')
 	row.setAttribute('index', index)
@@ -45,9 +42,7 @@ function createTrackRow(title, url, index) { //storageDivId,
 	//button
 	const playButtonElem = document.createElement('button')
 	playButtonElem.addEventListener("click", () => { 
-		//ReactPlayer reads playerContainers attributes to determine what to play
-		// storageDiv.setAttribute('currentTrackTitle', title);
-		// storageDiv.setAttribute('currentTrackUrl', url);
+		//ReactPlayer reads localStorage event triggers to determine what to play
 		saveCurrentTrackToLocalStorage(title, url);
 
 		document.querySelector("tr[active='true']")?.setAttribute('active', 'false')
@@ -116,18 +111,9 @@ export function createExportTracksButtons(tableId){
 	buttonContainer.appendChild(createButton("Save Tracks in Local Storage to File", exportLocalStorageToFile, 'tracks'))
 	buttonContainer.appendChild(createButton("Save Tracks to Bookmark", exportTracksToBookmark, tableId))
 	buttonContainer.appendChild(createButton("Save Tracks to File", exportTracksToFile, tableId))
-	// buttonContainer.appendChild(createButton("[TEST] Save Tracks to Now Playing", saveToLocalStorageCurrentTrack, null))
 	return buttonContainer;
 }
 
 function importTracksFromUrlFetch(tableId){
 	console.log("to be written")
 }
-
-function getUrlFromStorageDiv(divId){
-	console.log("Getting url from storage div")
-	const url = document.getElementById(divId).getAttribute("currentTrackUrl");
-	console.log("url from storage div " + url)
-	return url;
-}
-

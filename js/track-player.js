@@ -22,18 +22,9 @@ export class TrackPlayer {
 
 	createTrackPlayer(){
 		const trackConfig = { attributes: true };
-		// const attributeCallback = () => {
-		// 	const currentURL = this.containerDiv.getAttribute('currentTrackUrl')
-		// 	this.loadURL(currentURL)
-		// }
-		// const observer = new MutationObserver(attributeCallback);
-		// observer.observe(this.containerDiv, trackConfig);
 		window.onstorage = () => {
-			// console.log('triggered event from react player ' + window.localStorage.getItem('currentTrack'))
 			this.loadURL(window.localStorage.getItem('currentTrackUrl'))
 		}
-			
-		
 		renderReactPlayer(this.containerDiv, { url: this.url, playing: false, controls: true })
 		createLoopToggle(this.containerDiv)
 	}
