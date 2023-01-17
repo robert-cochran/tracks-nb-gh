@@ -25,16 +25,10 @@ goals: anonymous/accountless, free, easy music saving and sharing for collecting
 
 # Next
 - [ ] drag and drop feature to import songs from file
-    - [ ] add to local storage or cookies (or cache)? 
-    - how to implement this with only key value storage
-        what is the length limit of the value?
-        how about I store an count as a key and index links as i add them
-            but what about when someone deletes a song, then i will  be returning blanks?
+- [ ] load tracks local storage
 - [ ] export saved songs to file feature
-- [ ] cache
-    - https://blog.logrocket.com/javascript-cache-api/
-    - https://developer.mozilla.org/en-US/docs/Web/API/CacheStorage
-    - https://developer.mozilla.org/en-US/docs/Web/API/Cache
+- [ ] replace storageDiv idea with localStorage (clever but ultimately kind of annoying)
+- [ ] replace passing tableId around for importing/exporting with using localStorage to handle data (as source of truth)
 
 
 # High
