@@ -17,10 +17,14 @@ export async function saveToLocalStorage(key, value){
 }
 
 export async function saveCurrentTrackToLocalStorage(title, url){
-
     saveToLocalStorage('currentTrackTitle', title);
     saveToLocalStorage('currentTrackUrl', url);
     window.dispatchEvent( new Event('storage') )
+    //https://developer.mozilla.org/en-US/docs/Web/API/Window/storage_event
+}
+
+export async function saveAllTracksToLocalStorage(array){
+    saveToLocalStorage('tracks', array);
 }
 
 export async function importTracksFromLocalStorage(){}

@@ -71,3 +71,9 @@ export function exportTracksToUrlArray(tableId){
 	})
 	return urls;
 }
+
+export function appendRowsToTable(rows, table){
+	rows.map(row => {
+		document.getElementById(table).appendChild(row)
+	})
+}

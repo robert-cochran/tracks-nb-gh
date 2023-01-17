@@ -24,8 +24,12 @@ goals: anonymous/accountless, free, easy music saving and sharing for collecting
 //TODO add an option for the plugin to send it to cache, then have option in player to read from cache and save as a url maybe
 
 # Next
+- [ ] load tracks into local storage
+    - [ ] export tracks to local storage (needed? this should be happening as theyre added)
+    - could also save links as a playlist and timestamp it as the key?
+    - how about if localStorage tracks is different than what the current dom representation is then 'Load previous session from local storage' will appear
+        and if anything else is added then it replaces the local storage with whats in the dom now
 - [ ] drag and drop feature to import songs from file
-- [ ] load tracks local storage
 - [ ] export saved songs to file feature
 - [ ] replace passing tableId around for importing/exporting with using localStorage to handle data (as source of truth)
 

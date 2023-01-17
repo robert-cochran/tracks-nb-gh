@@ -24,6 +24,7 @@ export class TrackPlayer {
 		const trackConfig = { attributes: true };
 		window.onstorage = () => {
 			this.loadURL(window.localStorage.getItem('currentTrackUrl'))
+			//https://developer.mozilla.org/en-US/docs/Web/API/Window/storage_event
 		}
 		renderReactPlayer(this.containerDiv, { url: this.url, playing: false, controls: true })
 		createLoopToggle(this.containerDiv)
