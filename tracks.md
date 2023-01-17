@@ -99,10 +99,5 @@ https://www.youtube.com/watch?v=araK9j8mN9Y
 https://www.youtube.com/watch?v=ePSivyATBqg
 https://www.youtube.com/watch?v=_7tPMgKJcuA
 https://www.youtube.com/watch?v=Koq_6Z_oRBc
-<<<<<<< HEAD
 https://www.youtube.com/watch?v=kyrdA1geHmg
-=======
-https://www.youtube.com/watch?v=kyrdA1geHmg
-
 https://www.youtube.com/watch?v=ES5lFNvbFBs
->>>>>>> 9389734 ([nb] Edit: tracks.md)
