@@ -27,7 +27,6 @@ goals: anonymous/accountless, free, easy music saving and sharing for collecting
 - [ ] drag and drop feature to import songs from file
 - [ ] load tracks local storage
 - [ ] export saved songs to file feature
-- [ ] replace storageDiv idea with localStorage (clever but ultimately kind of annoying)
 - [ ] replace passing tableId around for importing/exporting with using localStorage to handle data (as source of truth)
 
 
