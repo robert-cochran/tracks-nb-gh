@@ -7,6 +7,9 @@ tr {
 tr:hover {
 	background-color: lightblue;
 }
+tr[active="true"] {
+	background-color: lightgreen;
+}
 
 :root {
 	--color-bg: var(--background);

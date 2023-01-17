@@ -1,4 +1,4 @@
-import { createLinkElement } from './elements.js';
+import { createLinkElement } from './elements/links.js';
 
 export function createExternalSitesTable(containerElementId, externalSitesArray){
 	const tableContainerDiv = document.getElementById(containerElementId);

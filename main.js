@@ -1,7 +1,7 @@
 import {TrackPlayer} from './js/track-player.js'
 import {createTracks} from './js/tracks.js'
 import {createTrackTable} from './js/track-table.js'
-import {readLinesFromFile, parseStringByDelimiter} from './js/file-reader.js'
+import {readLinesFromFile, parseStringByDelimiter} from './js/file-system-interface.js'
 import {createExternalSitesTable} from './js/external-sites-table.js'
 
 //this is essentially the controller, bringing together the model (data files) and the view (html document)

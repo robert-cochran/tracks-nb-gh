@@ -1,4 +1,3 @@
-import {createLinkElement} from './elements.js';
 
 export function sortTableAlphabetically(tableId) {
 	let rows, switching, i, x, y, shouldSwitch;

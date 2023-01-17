@@ -23,7 +23,7 @@ export class TrackPlayer {
 	createTrackPlayer(){
 		const trackConfig = { attributes: true };
 		const attributeCallback = () => {
-			const currentURL = this.containerDiv.getAttribute('url')
+			const currentURL = this.containerDiv.getAttribute('currentTrackUrl')
 			this.loadURL(currentURL)
 		}
 		const observer = new MutationObserver(attributeCallback);

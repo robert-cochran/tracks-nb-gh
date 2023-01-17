@@ -15,3 +15,20 @@ export function parseStringByDelimiter(linesArray) {
 	})
 	return externalSitesArray;
 }
+
+//exports file
+//returns an array of string lines
+export async function writeArrayToFile(filePath, array) {
+	const response = await fetch(filePath)
+	const unparsedData = await response.text();
+	const lines = unparsedData.split(/\r?\n/);
+	return lines
+}
+
+export async function importTracksFromFile(){
+
+} 
+
+export async function exportTracksToFile(){
+	
+}
