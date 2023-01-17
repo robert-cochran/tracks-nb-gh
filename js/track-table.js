@@ -1,7 +1,7 @@
 import { sortTableAlphabetically, sortTableByIndex, exportTracksToUrlArray, appendRowsToTable } from './table.js';
 import { isVideoPlayable } from './track-player.js';
 import { importTracksFromBookmark, exportTracksToBookmark } from './bookmarks.js';
-import { importTracksFromLocalStorage, saveAllTracksToLocalStorage, saveToLocalStorage, saveCurrentTrackToLocalStorage, saveAllTracksToLocalStorage } from './local-storage.js';
+import { importTracksFromLocalStorage, saveAllTracksToLocalStorage, removeTrackFromLocalStorage, saveCurrentTrackToLocalStorage } from './local-storage.js';
 import { importTracksFromFile, exportTracksToFile } from './file-system.js';
 import { createButton, createButtonContainer } from './elements/buttons.js';
 import { createInputElement } from './elements/input.js';
@@ -20,7 +20,7 @@ export async function createTrackTable(tracks, tableContainerId){
 	tableContainer.insertAdjacentElement("beforebegin", createImportTracksButtons(localStorageTracksKey));
 	tableContainer.insertAdjacentElement("beforebegin", createExportTracksButtons(localStorageTracksKey));
 
-	appendRowsToTable(trackRows)	
+	appendRowsToTable(trackRows, tableContainerId)	
 }
 
 function createTrackRow(title, url, index) {
@@ -31,7 +31,15 @@ function createTrackRow(title, url, index) {
 	row.setAttribute('url', url)
 	row.setAttribute('active', 'false')
 
-	//button
+	const rowIndex = document.createElement('td')
+	rowIndex.innerText = index;
+	row.appendChild(rowIndex);
+
+	const rowTitleData = document.createElement('td')
+	rowTitleData.innerText = title
+	row.appendChild(rowTitleData)
+	
+	const rowLoadData = document.createElement('td')
 	const playButtonElem = document.createElement('button')
 	playButtonElem.addEventListener("click", () => { 
 		//ReactPlayer reads localStorage event triggers to determine what to play
@@ -41,14 +49,23 @@ function createTrackRow(title, url, index) {
 		document.querySelector(`tr[url='${url}']`).setAttribute('active', 'true')
 	})
 	playButtonElem.innerText = "Play Track"
-
-	// const rowIndex = 
-	const rowTitleData = document.createElement('td')
-	rowTitleData.innerText = title
-	const rowLoadData = document.createElement('td')
 	rowLoadData.appendChild(playButtonElem)
-	row.appendChild(rowTitleData)
 	row.appendChild(rowLoadData)
+
+	const rowDeleteData = document.createElement('td')
+	const deleteButtonElem = document.createElement('button')
+	deleteButtonElem.addEventListener("click", () => { 
+		//ReactPlayer reads localStorage event triggers to determine what to play
+		removeTrackFromLocalStorage(title, url);
+		//need to figure out how this works when deleting a song that currently playing
+
+		//need these below?
+		document.querySelector("tr[active='true']")?.setAttribute('active', 'false')
+		document.querySelector(`tr[url='${url}']`).setAttribute('active', 'true')
+	})
+	deleteButtonElem.innerText = "Delete Track" //make this a trash can icon instead
+	rowDeleteData.appendChild(deleteButtonElem);
+	row.appendChild(rowDeleteData)
 
 	return row;
 }
@@ -95,8 +112,10 @@ export function createImportTracksButtons(storageKey){
 	buttonContainer.appendChild(createButton("Load Tracks from Bookmark [BROKEN]", importTracksFromBookmark, storageKey))
 	buttonContainer.appendChild(createButton("Load Tracks from File [BROKEN]", importTracksFromFile, storageKey))
 	buttonContainer.appendChild(createButton("Load Tracks from URL [BROKEN]", importTracksFromUrlFetch, storageKey))
-	buttonContainer.appendChild(createInputElement('text', 'inputFetchTracks'))
-	buttonContainer.appendChild(createButton("Add Track URL [BROKEN]", addTrackFromInput, storageKey))
+	// buttonContainer.appendChild(createInputElement('text', 'inputFetchTracks'))
+	// buttonContainer.appendChild(createButton("Add Track URL [BROKEN]", addTrackFromTextInput, [storageKey, getTextInputValue('inputAddTrack')])) 
+		//^this is broken, cant grab textInput for a input that hasnt been made yet
+		// need to use event of some kind i think
 	buttonContainer.appendChild(createInputElement('text', 'inputAddTrack'))
 	
 	return buttonContainer;
@@ -114,6 +133,15 @@ function importTracksFromUrlFetch(tableId){
 	console.log("to be written")
 }
 
-function addTrackFromInput(inputUrl){
-	saveToLocalStorage(localStorageTracksKey, exportTracksToUrlArray(tableContainerId))
+function addTrackFromTextInput(args){
+	let storageKey, trackUrl;
+	[storageKey, trackUrl] = [args]
+	allTracks = localStorage.storageKey;
+
+	// saveToLocalStorage(localStorageTracksKey, exportTracksToUrlArray(tableContainerId))
+	appendItemToExistingValueArray(storageKey, trackUrl)
+}
+
+function getTextInputValue(inputId){
+	return document.getElementById(inputId).value;
 }

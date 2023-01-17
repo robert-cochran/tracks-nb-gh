@@ -27,6 +27,15 @@ export async function saveAllTracksToLocalStorage(array){
     saveToLocalStorage('tracks', array);
 }
 
+export function removeItemFromValue(key, deletedItem){
+
+}
+
+export function removeTrackFromLocalStorage(deletedTrack){
+    
+}
+
+
 export async function importTracksFromLocalStorage(){}
 
 

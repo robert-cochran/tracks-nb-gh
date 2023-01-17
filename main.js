@@ -11,7 +11,7 @@ async function main() {
 		trackURLsElemId: 'tracksTable',
 		playerContainerElementId: 'containerPlayer',
 		externalSitesPath: './external-sites.md',
-		externalSitesElemId: "externalSites"
+		externalSitesElementId: "externalSites"
 	}
 	
 	const tracks = await createTracks(config.trackURLsPath);
@@ -21,7 +21,7 @@ async function main() {
 	
 	const externalSites = await readLinesFromFile(config.externalSitesPath);
 	const externalSitesArray = parseStringByDelimiter(externalSites)
-	createExternalSitesTable(config.externalSitesElemId, externalSitesArray);
+	createExternalSitesTable(config.externalSitesElementId, externalSitesArray);
 }
 
 main();
