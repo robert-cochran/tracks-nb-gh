@@ -14,11 +14,7 @@ append_pbpaste_to_track () {
     fi
 } 
 
-<<<<<<< HEAD:sh-scripts/aptrk.sh
 # Remove duplicate lines from a file, preserve original ordering, keep the first duplicate
 # cat -n stuff.txt | sort -uk2 | sort -nk1 | cut -f2-
 
 alias aptrk='append_pbpaste_to_track'
-=======
-alias aptrk='append_pbpaste_to_track'
->>>>>>> 9181e7f ([nb] Commit):aptrk.sh
