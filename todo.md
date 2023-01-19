@@ -30,6 +30,7 @@ goals: anonymous/accountless, free, easy music saving and sharing for collecting
 - [ ] import saved songs from file (json?)
 - [ ] export saved songs to file feature
 - [ ] drag and drop feature to import songs from file
+    - https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API
 - [ ] implement Controller to untangle the mess of shit in tracks with passing data around and updating view
 - [ ] turn more of the js files into classes
 - [ ] with all these classes is this better to be made in react? or better yet something like svelt which is supposed to be smaller faster etc...

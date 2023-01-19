@@ -20,3 +20,14 @@ export function appendRowsToTable(rows, table){
 		document.getElementById(table).appendChild(row)
 	})
 }
+
+export function resetTableRowIndexs(tableId){
+	const table = document.getElementById(tableId)
+	table.childNodes.forEach((trackRowNode, index) => {
+		if (index!=0){
+			trackRowNode.setAttribute('index', index)
+			trackRowNode.firstElementChild.innerText = index
+		}
+	})
+	
+}
