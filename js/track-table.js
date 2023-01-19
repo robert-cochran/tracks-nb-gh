@@ -19,27 +19,46 @@ import { getYoutubeVideoTitle } from './youtube-api.js';
 // 	}
 // }
 
-export async function createTrackTable(tracks, tableElemId){ 
+export async function createTrackTable(tracks, tableContainerElemId){ 
 	const trackRows = await Promise.all(tracks.map(async (track, index) => {
 		return createTrackRow(track.title, track.url, index+1); 
 	}))
 
 	const tracksLocalStorageKey = "tracks";
+	const tracksTableId = 'tracksTable'
+	const tableContainer = document.getElementById(tableContainerElemId);
+	tableContainer.appendChild(createTableOptions(tracksLocalStorageKey, tracksTableId))
+	tableContainer.appendChild(createTracksTable(tracksTableId))
 
-	const tableContainer = document.getElementById(tableElemId);
-	tableContainer.insertAdjacentElement("beforebegin", createSortingButtons(tracksLocalStorageKey));
-	tableContainer.insertAdjacentElement("beforebegin", createCheckPlayableVideosButton(tracksLocalStorageKey));
-	tableContainer.insertAdjacentElement("beforebegin", createImportTracksButtons(tracksLocalStorageKey));
-	tableContainer.insertAdjacentElement("beforebegin", createExportTracksButtons(tracksLocalStorageKey));
-	tableContainer.insertAdjacentElement("beforebegin", createAddTrackButton(tableElemId));
-
-	appendRowsToTable(trackRows, tableElemId)	
+	appendRowsToTable(trackRows, tracksTableId)	
 }
 
-function removeTrackRow(tableId, url, index){
-	//not sure which one to use yet, probably just url
+function createTracksTable(tableId){
+	const table = document.createElement('table');
+	table.id = tableId;
+	table.appendChild(createRowHeader(['Index', 'Track', 'Play', 'Remove']))
+	return table;
+}
 
-	// on event this
+function createRowHeader(headers){
+	const rowHeader = document.createElement('tr')
+	headers.forEach(headerText => {
+		const header = document.createElement('th')
+		header.innerText = headerText
+		rowHeader.appendChild(header)
+	})
+    return rowHeader;
+}
+
+function createTableOptions(tracksLocalStorageKey, tracksTableId){
+	const tableOptionsContainer = document.createElement('div');
+	tableOptionsContainer.id = 'tracksTableOptions'
+	tableOptionsContainer.appendChild(createSortingButtons(tracksLocalStorageKey));
+	tableOptionsContainer.appendChild(createCheckPlayableVideosButton(tracksLocalStorageKey));
+	tableOptionsContainer.appendChild(createImportTracksButtons(tracksLocalStorageKey));
+	tableOptionsContainer.appendChild(createExportTracksButtons(tracksLocalStorageKey));
+	tableOptionsContainer.appendChild(createAddTrackButton(tracksTableId));
+	return tableOptionsContainer;
 }
 
 export function createCheckPlayableVideosButton(tableId){

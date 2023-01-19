@@ -22,6 +22,7 @@ function createRow(index, title, url, active){
 	row.setAttribute('index', index)
 	row.setAttribute('title', title)
 	row.setAttribute('url', url)
+	row.id = url;
     return row;
 }
 
@@ -54,13 +55,25 @@ function createDeleteButtonDataCell(title, url){
     const deleteButtonDataCell = document.createElement('td')
 	const deleteButtonElem = document.createElement('button')
 	deleteButtonElem.addEventListener("click", () => { 
-		//need to figure out how this works when deleting a song that currently playing
-        //this will need to either 
-        //  trigger event for table to handle 
-        //  or call table, find row with url, remove it
+		const row = document.getElementById(url)
+		const table = row.parentElement;
+		table.removeChild(row);
+
+		//reset index for all rows
+			// will probably need a trigger on the table to reset index
+
+
+		// - [ ] delete track row when user presses delete button
+		// 	- need to reset all index's on remove track
+		//	- deleting a song that currently playing
+		//		if other songs available then move current track to anyhting else
+		//		but if its the last rtack then what do?
+		//		this will need to either 
+		//		- trigger event for table to handle 
+		//		-  or call table, find row with url, remove it
     })
-	// deleteButtonElem.innerHTML = '<p> Delete &spades; </p>'
-	deleteButtonElem.innerText = "\uD83D\uDDD1 [TODO]" //make this a trash can icon instead
+	
+	deleteButtonElem.innerText = "\uD83D\uDDD1 [TODO]" 
 	deleteButtonElem.setAttribute('title', 'Remove Track')
 	deleteButtonDataCell.appendChild(deleteButtonElem);
     return deleteButtonDataCell;

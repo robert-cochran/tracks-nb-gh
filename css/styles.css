@@ -1,6 +1,10 @@
 /* https://github.com/hundredrabbits/Themes/tree/master/themes */
 /* https://github.com/kormyen/memex */
 
+th {
+	font-size: 20px;
+}
+
 tr {
 	border: 10px solid;
 }

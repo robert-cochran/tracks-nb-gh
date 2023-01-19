@@ -24,7 +24,6 @@ goals: anonymous/accountless, free, easy music saving and sharing for collecting
 //TODO add an option for the plugin to send it to cache, then have option in player to read from cache and save as a url maybe
 
 # Next
-- [ ] if user adds dumb url what should vieo player do? maybe remove button functionality?
 - [ ] delete track row when user presses delete button
     - if easy move current track to anyhting else, but if its the last rtack then what do?
     - need to reset all index's on remove track

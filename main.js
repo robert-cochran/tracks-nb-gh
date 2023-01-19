@@ -9,7 +9,7 @@ import {createExternalSitesTable} from './js/external-sites-table.js'
 async function main() {
 	const config = {
 		defaultTracksFilePath: "./tracks-reduced.txt",
-		tracksTableElemId: 'tracksTable',
+		tracksTableContainerElemId: 'containerTracksTable',
 		playerContainerElementId: 'containerPlayer',
 		externalSitesPath: './external-sites.md',
 		externalSitesElementId: "externalSites"
@@ -18,7 +18,7 @@ async function main() {
 	const tracks = await createTracks(config.defaultTracksFilePath);
 	const trackPlayer = new TrackPlayer(tracks.getCurrentTrack(), config.playerContainerElementId)
 	trackPlayer.createTrackPlayer();
-	createTrackTable(tracks.getTracks(), config.tracksTableElemId)
+	createTrackTable(tracks.getTracks(), config.tracksTableContainerElemId)
 	
 	// const externalSites = await readLinesFromFile(config.externalSitesPath);
 	// const externalSitesArray = parseStringByDelimiter(externalSites)
