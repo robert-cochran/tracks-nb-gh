@@ -55,7 +55,8 @@ function readFileContents(event){
 	reader.addEventListener("load", async () => {
 		
 		const tracks = await createTracksFromArray(reader.result);
-		console.log(tracks)
+		// console.log(tracks)
+		document.getElementById('containerTracksTable').innerHTML = ''
 		createTrackTable(tracks.getTracks(), 'containerTracksTable') //THIS IS PURELY TO SEE IF IT WILL WORK, THIS IS A BAD DUMN SOLUTION
 	}, false);
 	// so where to send the data now, to localStorage?

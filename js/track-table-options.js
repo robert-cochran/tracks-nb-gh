@@ -30,11 +30,12 @@ function createSortingButtons(tableId, containerId){
 
 function createImportTracksButtons(storageKey){
 	const buttonContainer = createButtonContainer('div', 'flex', 'jusify-left', 'importTracksButtonsContainer');
+	buttonContainer.appendChild(createImportFileButton("Load Tracks from File [TODO]")) //, importTracksFromFile, storageKey, 'loadTracksFileBtn')
 	buttonContainer.appendChild(createButton("Load Previous Session from Local Storage [TODO]", importTracksFromLocalStorage, storageKey, 'loadSessionLocalStorageBtn'))
 	buttonContainer.appendChild(createButton("Load Tracks from Bookmark [TODO]", importTracksFromBookmark, storageKey, 'loadTracksBookmarkBtn'))
-	buttonContainer.appendChild(createImportFileButton("Load Tracks from File [TODO]")) //, importTracksFromFile, storageKey, 'loadTracksFileBtn')
 	buttonContainer.appendChild(createButton("Load Tracks from URL [TODO]", importTracksFromUrlFetch, storageKey, 'loadTracksUrlBtn'))
 	buttonContainer.appendChild(createInputElement('text', 'inputFetchTracks'))
+	buttonContainer.appendChild(createButton("Sync Tracks Externally [TODO][EXPERIMENTAL]", importTracksFromUrlFetch, storageKey, 'syncTracksExternalBtn'))
 	return buttonContainer;
 }
 
