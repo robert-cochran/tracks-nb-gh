@@ -10,7 +10,7 @@ export async function createTracks(urlsPath){
 		return track
 	}))
 
-	const tracks = new Tracks(tracksArray, tracksArray[11]);
+	const tracks = new Tracks(tracksArray, (tracksArray.length > 0 ? tracksArray[0] : ''));
 
 	return tracks
 }
@@ -31,14 +31,14 @@ class Tracks {
 
 	//tracks is an array of Track objects
 	//currentTrack is a Track object
-	constructor(tracks, currentTrack){
-		this.tracks = tracks
-		this.tracksAddedOldestToNewest = [...tracks]
+	constructor(tracksArray, currentTrack){
+		this.tracksArray = tracksArray
+		this.tracksAddedOldestToNewest = [...tracksArray]
 		this.currentTrack = currentTrack
 	}
 
 	addTrack(track){ 
-		this.tracks.push(track) 
+		this.tracksArray.push(track) 
 	}
 
 	removeTrack(){}
@@ -52,10 +52,10 @@ class Tracks {
 	}
 
 	getTracks(){ 
-		return this.tracks; 
+		return this.tracksArray; 
 	}
 
 	printTracks(){ 
-		this.tracks.forEach(track => {console.log("title " + track.title)})
+		this.tracksArray.forEach(track => {console.log("title " + track.title)})
 	}
 }

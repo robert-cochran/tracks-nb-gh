@@ -61,7 +61,7 @@ function createLoopToggle(parentDiv){
 
 	const loopTrackToggleLabel = document.createElement("label")
 	loopTrackToggleLabel.setAttribute("for", "loopTrackToggle")
-	loopTrackToggleLabel.innerText = "Loop Track"
+	loopTrackToggleLabel.innerText = "Loop Track [TODO]"
 
 	parentDiv.appendChild(loopTrackToggleLabel)
 	parentDiv.appendChild(loopTrackToggle)

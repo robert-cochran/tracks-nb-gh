@@ -24,21 +24,33 @@ goals: anonymous/accountless, free, easy music saving and sharing for collecting
 //TODO add an option for the plugin to send it to cache, then have option in player to read from cache and save as a url maybe
 
 # Next
-- [ ] load tracks into local storage
-    - [ ] export tracks to local storage (needed? this should be happening as theyre added)
-    - could also save links as a playlist and timestamp it as the key?
-    - how about if localStorage tracks is different than what the current dom representation is then 'Load previous session from local storage' will appear
-        and if anything else is added then it replaces the local storage with whats in the dom now
-- [ ] drag and drop feature to import songs from file
+- [ ] if user adds dumb url what should vieo player do? maybe remove button functionality?
+- [ ] delete track row when user presses delete button
+    - if easy move current track to anyhting else, but if its the last rtack then what do?
+    - need to reset all index's on remove track
+- [ ] import saved songs from file (json?)
 - [ ] export saved songs to file feature
-- [ ] replace passing tableId around for importing/exporting with using localStorage to handle data (as source of truth)
-
+- [ ] drag and drop feature to import songs from file
+- [ ] implement Controller to untangle the mess of shit in tracks with passing data around and updating view
+- [ ] turn more of the js files into classes
+- [ ] with all these classes is this better to be made in react? or better yet something like svelt which is supposed to be smaller faster etc...
+- [ ] sync session backup, 
+    - [ ] store urls in localStorage to let user close out of tab and come back to urls they added before
+            so if user closes tab and tracks has urls then it will populate table with those instead of the default list
+    - [ ] save urls with only their unique video id to save space
+    - [ ] when adding/deleting a track add a fading message that localStorage has been updated
+    - [ ] when adding a new track, sync trackstable to localstorage.allTracks first
+    - [ ] delete button next to tracks, sync updated trackstable to localStorage.allTracks
 
 # High
 - [ ] TODO strike out videos that cant be played
+    - [ ] RELATED: check track added through user input is an actual url? (similar in function to check playable videos really)
 - [ ] easily creatable/saveable anonymous playlists 
     - (bookmarks?)
 - [ ] create radio out of playlist (i.e. shuffle a playlist so it works almost like a radio)
+- [ ] tags (save them in the html row element as an attribute)
+- [ ] queue
+- [ ] playlist
 
 
 

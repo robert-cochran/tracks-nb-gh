@@ -35,7 +35,8 @@
 export async function getYoutubeVideoTitle(url){
 	const response = await fetch('https://noembed.com/embed?url=' + url);
 	const jsonData = await response.json();
-	return jsonData.title;
+	const title = ((jsonData.title != undefined) ? jsonData.title : 'Video Title Not Found' )
+	return title;
 }
 
 

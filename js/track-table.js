@@ -1,147 +1,123 @@
-import { sortTableAlphabetically, sortTableByIndex, exportTracksToUrlArray, appendRowsToTable } from './table.js';
+import { sortTableAlphabetically, sortTableByIndex} from './table-sort.js' 
+import { exportTracksToUrlArray, appendRowsToTable } from './table.js';
 import { isVideoPlayable } from './track-player.js';
 import { importTracksFromBookmark, exportTracksToBookmark } from './bookmarks.js';
-import { importTracksFromLocalStorage, saveAllTracksToLocalStorage, removeTrackFromLocalStorage, saveCurrentTrackToLocalStorage } from './local-storage.js';
+import { importTracksFromLocalStorage, saveTracksArrayToLocalStorage } from './local-storage.js';
 import { importTracksFromFile, exportTracksToFile } from './file-system.js';
-import { createButton, createButtonContainer } from './elements/buttons.js';
-import { createInputElement } from './elements/input.js';
+import { createButton, createButtonContainer } from './buttons.js';
+import { createInputElement } from './input.js';
+import { createTrackRow } from './track-table-row.js';
+import { getYoutubeVideoTitle } from './youtube-api.js';
+
 // import { getPlayableStatus } from './youtube-api.js';
 
-export async function createTrackTable(tracks, tableContainerId){ 
+// export class TracksTable{
+// 	constructor(initialTracks, tableContainerId){
+// 		this.initialTracks = initialTracks
+// 		this.tableContainerId = tableContainerId
+// 		createTrackTable(this.initialTracks, )
+// 	}
+// }
+
+export async function createTrackTable(tracks, tableElemId){ 
 	const trackRows = await Promise.all(tracks.map(async (track, index) => {
-		return createTrackRow(track.title, track.url, index); 
+		return createTrackRow(track.title, track.url, index+1); 
 	}))
 
-	const localStorageTracksKey = "tracks";
+	const tracksLocalStorageKey = "tracks";
 
-	const tableContainer = document.getElementById(tableContainerId);
-	tableContainer.insertAdjacentElement("beforebegin", createSortingButtons(localStorageTracksKey));
-	tableContainer.insertAdjacentElement("beforebegin", createCheckPlayableVideosButton(localStorageTracksKey));
-	tableContainer.insertAdjacentElement("beforebegin", createImportTracksButtons(localStorageTracksKey));
-	tableContainer.insertAdjacentElement("beforebegin", createExportTracksButtons(localStorageTracksKey));
+	const tableContainer = document.getElementById(tableElemId);
+	tableContainer.insertAdjacentElement("beforebegin", createSortingButtons(tracksLocalStorageKey));
+	tableContainer.insertAdjacentElement("beforebegin", createCheckPlayableVideosButton(tracksLocalStorageKey));
+	tableContainer.insertAdjacentElement("beforebegin", createImportTracksButtons(tracksLocalStorageKey));
+	tableContainer.insertAdjacentElement("beforebegin", createExportTracksButtons(tracksLocalStorageKey));
+	tableContainer.insertAdjacentElement("beforebegin", createAddTrackButton(tableElemId));
 
-	appendRowsToTable(trackRows, tableContainerId)	
+	appendRowsToTable(trackRows, tableElemId)	
 }
 
-function createTrackRow(title, url, index) {
-	//tableRow
-	const row = document.createElement('tr')
-	row.setAttribute('index', index)
-	row.setAttribute('title', title)
-	row.setAttribute('url', url)
-	row.setAttribute('active', 'false')
+function removeTrackRow(tableId, url, index){
+	//not sure which one to use yet, probably just url
 
-	const rowIndex = document.createElement('td')
-	rowIndex.innerText = index;
-	row.appendChild(rowIndex);
-
-	const rowTitleData = document.createElement('td')
-	rowTitleData.innerText = title
-	row.appendChild(rowTitleData)
-	
-	const rowLoadData = document.createElement('td')
-	const playButtonElem = document.createElement('button')
-	playButtonElem.addEventListener("click", () => { 
-		//ReactPlayer reads localStorage event triggers to determine what to play
-		saveCurrentTrackToLocalStorage(title, url);
-
-		document.querySelector("tr[active='true']")?.setAttribute('active', 'false')
-		document.querySelector(`tr[url='${url}']`).setAttribute('active', 'true')
-	})
-	playButtonElem.innerText = "Play Track"
-	rowLoadData.appendChild(playButtonElem)
-	row.appendChild(rowLoadData)
-
-	const rowDeleteData = document.createElement('td')
-	const deleteButtonElem = document.createElement('button')
-	deleteButtonElem.addEventListener("click", () => { 
-		//ReactPlayer reads localStorage event triggers to determine what to play
-		removeTrackFromLocalStorage(title, url);
-		//need to figure out how this works when deleting a song that currently playing
-
-		//need these below?
-		document.querySelector("tr[active='true']")?.setAttribute('active', 'false')
-		document.querySelector(`tr[url='${url}']`).setAttribute('active', 'true')
-	})
-	deleteButtonElem.innerText = "Delete Track" //make this a trash can icon instead
-	rowDeleteData.appendChild(deleteButtonElem);
-	row.appendChild(rowDeleteData)
-
-	return row;
-}
-
-function removeActiveAttribute(url){
-	const activeTrackDiv = document.querySelectorAll(`[title=${url}]`);
-}
-
-function setActiveAttribute(url){
-
+	// on event this
 }
 
 export function createCheckPlayableVideosButton(tableId){
-	const buttonContainer = createButtonContainer("div", "flex", "justify-left")
-	buttonContainer.appendChild(createButton("Check Playable Videos", crossOutUnplayableVideoRows, tableId))
+	const buttonContainer = createButtonContainer("div", "flex", "justify-left", 'checkPlayableVideosButtonsContainer')
+	buttonContainer.appendChild(createButton("Check Playable Videos [TODO]", crossOutUnplayableVideoRows, tableId))
 	return buttonContainer;
 }
 
-//future: make this more general by adding styles to add and rule to apply for specific rows
-//right now the function is hyper specific, can make more general in future
 function crossOutUnplayableVideoRows(tableId){
-	const table = document.getElementById(tableId)
-	const rows = table.rows;
-	for (let row of rows){
-		console.log(row)
-		if (!isVideoPlayable(row.getAttribute("url"))){
-			// row.style.color = "grey"
-			// row.style.textDecoration = "line-through"
-		}
-	}
+	//future: make this more general by adding 
+	//  styles to add and rule to apply for specific rows
+	//  right now the function is hyper specific, 
+	//	can make more general in future
+	
+	// const table = document.getElementById(tableId)
+	// const rows = table.rows;
+	// for (let row of rows){
+	// 	console.log(row)
+	// 	if (!isVideoPlayable(row.getAttribute("url"))){
+	// 		// row.style.color = "grey"
+	// 		// row.style.textDecoration = "line-through"
+	// 	}
+	// }
 }
 
-export function createSortingButtons(tableId){
-	const buttonContainer = createButtonContainer('div', 'flex', 'jusify-left');
-	buttonContainer.appendChild(createButton("Sort By Index", sortTableByIndex, tableId))
-	buttonContainer.appendChild(createButton("Sort Alphabetically", sortTableAlphabetically, tableId))
+export function createSortingButtons(tableId, containerId){
+	const buttonContainer = createButtonContainer('div', 'flex', 'jusify-left', 'sortingButtonsContainer');
+	buttonContainer.appendChild(createButton("Sort By Index", sortTableByIndex, tableId, 'sortIndexBtn'))
+	buttonContainer.appendChild(createButton("Sort Alphabetically", sortTableAlphabetically, tableId, 'sortAlphabeticalBtn'))
 	return buttonContainer;
 }
-
 
 export function createImportTracksButtons(storageKey){
-	const buttonContainer = createButtonContainer('div', 'flex', 'jusify-left');
-	buttonContainer.appendChild(createButton("Load Previous Session from Local Storage [BROKEN]", importTracksFromLocalStorage, storageKey))
-	buttonContainer.appendChild(createButton("Load Tracks from Bookmark [BROKEN]", importTracksFromBookmark, storageKey))
-	buttonContainer.appendChild(createButton("Load Tracks from File [BROKEN]", importTracksFromFile, storageKey))
-	buttonContainer.appendChild(createButton("Load Tracks from URL [BROKEN]", importTracksFromUrlFetch, storageKey))
-	// buttonContainer.appendChild(createInputElement('text', 'inputFetchTracks'))
-	// buttonContainer.appendChild(createButton("Add Track URL [BROKEN]", addTrackFromTextInput, [storageKey, getTextInputValue('inputAddTrack')])) 
-		//^this is broken, cant grab textInput for a input that hasnt been made yet
-		// need to use event of some kind i think
-	buttonContainer.appendChild(createInputElement('text', 'inputAddTrack'))
-	
+	const buttonContainer = createButtonContainer('div', 'flex', 'jusify-left', 'importTracksButtonsContainer');
+	buttonContainer.appendChild(createButton("Load Previous Session from Local Storage [TODO]", importTracksFromLocalStorage, storageKey, 'loadSessionLocalStorageBtn'))
+	buttonContainer.appendChild(createButton("Load Tracks from Bookmark [TODO]", importTracksFromBookmark, storageKey, 'loadTracksBookmarkBtn'))
+	buttonContainer.appendChild(createButton("Load Tracks from Txt File [TODO]", importTracksFromFile, storageKey, 'loadTracksTxtFileBtn'))
+	buttonContainer.appendChild(createButton("Load Tracks from Json File [TODO]", importTracksFromFile, storageKey, 'loadTracksJsonFileBtn'))
+	buttonContainer.appendChild(createButton("Load Tracks from URL [TODO]", importTracksFromUrlFetch, storageKey, 'loadTracksUrlBtn'))
+	buttonContainer.appendChild(createInputElement('text', 'inputFetchTracks'))
 	return buttonContainer;
 }
 
 export function createExportTracksButtons(storageKey){
-	const buttonContainer = createButtonContainer('div', 'flex', 'jusify-left');
-	buttonContainer.appendChild(createButton("Save Tracks in Local Storage [BROKEN]", saveAllTracksToLocalStorage, storageKey))
-	buttonContainer.appendChild(createButton("Save Tracks to Bookmark [BROKEN]", exportTracksToBookmark, storageKey))
-	buttonContainer.appendChild(createButton("Save Tracks to File [BROKEN]", exportTracksToFile, storageKey))
+	const buttonContainer = createButtonContainer('div', 'flex', 'jusify-left', 'exportTracksButtonsContainer');
+	buttonContainer.appendChild(createButton("Save Tracks in Local Storage [TODO]", saveTracksArrayToLocalStorage, storageKey, 'saveTracksLocalStorageBtn'))
+	buttonContainer.appendChild(createButton("Save Tracks to Bookmark [TODO]", exportTracksToBookmark, storageKey, 'saveTracksBookmarkBtn'))
+	buttonContainer.appendChild(createButton("Save Tracks to File [TODO]", exportTracksToFile, storageKey, 'saveTracksFileBtn'))
 	return buttonContainer;
 }
 
-function importTracksFromUrlFetch(tableId){
+export function createAddTrackButton(tableElemId){
+	const buttonContainer = createButtonContainer('div', 'flex', 'jusify-left', 'addTrackButtonContainer');
+	const addTrackUrlBtnId = 'addTrackUrlBtn'
+	buttonContainer.appendChild(createButton("Add Track URL [TODO]", addTrackFromTextInput, tableElemId, addTrackUrlBtnId)) 
+	buttonContainer.appendChild(createInputElement('text', 'inputAddTrack'))
+	return buttonContainer;
+}
+
+function importTracksFromUrlFetch(tableElemId){
 	console.log("to be written")
 }
 
-function addTrackFromTextInput(args){
-	let storageKey, trackUrl;
-	[storageKey, trackUrl] = [args]
-	allTracks = localStorage.storageKey;
+async function addTrackFromTextInput(tableElemId){
+	// TODO: check the text is a valid youtube url
+	const trackUrl = document.getElementById('inputAddTrack').value;
+	const tracksTable = document.getElementById(tableElemId);
+	const title = await getYoutubeVideoTitle(trackUrl); //if title === undefined title = 'Video Title Not Found'
+	const url = trackUrl;
+	const index = tracksTable.childElementCount; 
 
-	// saveToLocalStorage(localStorageTracksKey, exportTracksToUrlArray(tableContainerId))
-	appendItemToExistingValueArray(storageKey, trackUrl)
+	//check if url already exists in list, if so, dont add
+	if (!checkForUrlInTable(tableElemId, url)){
+		tracksTable.appendChild(createTrackRow(title, url, index));
+	}
 }
 
-function getTextInputValue(inputId){
-	return document.getElementById(inputId).value;
+function checkForUrlInTable(tableElemId, url){
+	const tracks = exportTracksToUrlArray(tableElemId);
+	return tracks.includes(url)
 }

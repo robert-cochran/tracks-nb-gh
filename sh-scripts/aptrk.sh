@@ -2,7 +2,7 @@
 
 append_pbpaste_to_track () { 
     #check if link is a duplicate, if so dont add the link and echo "track already added"
-    duplicateTrackCount=$(grep -c $(pbpaste) ~/.nb/tracks/tracks.md)
+    duplicateTrackCount=$(grep -c $(pbpaste) ~/.nb/tracks/tracks.txt)
 
     if [[ duplicateTrackCount -gt 0 ]]
     then
