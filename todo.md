@@ -24,13 +24,13 @@ goals: anonymous/accountless, free, easy music saving and sharing for collecting
 //TODO add an option for the plugin to send it to cache, then have option in player to read from cache and save as a url maybe
 
 # Next
-- [ ] delete track row when user presses delete button
-    - if easy move current track to anyhting else, but if its the last rtack then what do?
-    - need to reset all index's on remove track
 - [ ] import saved songs from file (json?)
 - [ ] export saved songs to file feature
+- [ ] create bookmark from tracks saved
+- [ ] read bookmark to update tracks
 - [ ] drag and drop feature to import songs from file
     - https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API
+    - https://developer.mozilla.org/en-US/docs/Web/API/File_API/Using_files_from_web_applications#selecting_files_using_drag_and_drop
 - [ ] implement Controller to untangle the mess of shit in tracks with passing data around and updating view
 - [ ] turn more of the js files into classes
 - [ ] with all these classes is this better to be made in react? or better yet something like svelt which is supposed to be smaller faster etc...

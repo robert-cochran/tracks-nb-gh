@@ -39,6 +39,7 @@ function createTracksTable(tableId){
 }
 
 const tracksTableDOMChangeCallback = (mutationList) => {
+//https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver#example
 	for (const mutation of mutationList) {
 		if (mutation.type === 'childList' 
 					&& mutation.removedNodes.length > 0
@@ -50,11 +51,6 @@ const tracksTableDOMChangeCallback = (mutationList) => {
 			// remember to check if its the first, last or only element in the list
 			setCurrentlyPlayingTrack('', '')
 		} 
-
-		else if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-			// console.log(`${mutation.addedNodes[0].id} child node added.`);
-		} 
-		// else if (mutation.type === 'attributes') {}
 	}
 };
 

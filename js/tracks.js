@@ -1,10 +1,28 @@
 import {Track} from './track.js'
 import { getYoutubeVideoTitle } from './youtube-api.js';
 
-export async function createTracks(urlsPath){
+export async function createTracksFromUrlPath(urlsPath){
 	const urls = await loadURLsFromFilePath(urlsPath);
 	
 	const tracksArray = await Promise.all(urls.map(async url => {
+		const title = await getYoutubeVideoTitle(url)
+		const track = new Track(title, url)
+		return track
+	}))
+
+	const tracks = new Tracks(tracksArray, (tracksArray.length > 0 ? tracksArray[0] : ''));
+
+	return tracks
+}
+
+export async function createTracksFromArray(array){
+	const unfilteredURLs = array.split(/\r?\n/);
+
+	const urlArray = unfilteredURLs.filter(url => {
+		return url.length > 1
+	})
+	
+	const tracksArray = await Promise.all(urlArray.map(async url => {
 		const title = await getYoutubeVideoTitle(url)
 		const track = new Track(title, url)
 		return track

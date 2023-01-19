@@ -1,5 +1,5 @@
 import {TrackPlayer} from './js/track-player.js'
-import {createTracks} from './js/tracks.js'
+import {createTracksFromUrlPath} from './js/tracks.js'
 import {createTrackTable} from './js/track-table.js'
 import {readLinesFromFile, parseStringByDelimiter} from './js/file-system.js'
 import {createExternalSitesTable} from './js/external-sites-table.js'
@@ -15,7 +15,7 @@ async function main() {
 		externalSitesElementId: "externalSites"
 	}
 	
-	const tracks = await createTracks(config.defaultTracksFilePath);
+	const tracks = await createTracksFromUrlPath(config.defaultTracksFilePath);
 	const trackPlayer = new TrackPlayer(tracks.getCurrentTrack(), config.playerContainerElementId)
 	trackPlayer.createTrackPlayer();
 	createTrackTable(tracks.getTracks(), config.tracksTableContainerElemId)

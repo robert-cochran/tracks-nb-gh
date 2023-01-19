@@ -4,7 +4,7 @@ import { isVideoPlayable } from './track-player.js';
 import { importTracksFromBookmark, exportTracksToBookmark } from './bookmarks.js';
 import { importTracksFromLocalStorage, saveTracksArrayToLocalStorage } from './local-storage.js';
 import { importTracksFromFile, exportTracksToFile } from './file-system.js';
-import { createButton, createButtonContainer } from './buttons.js';
+import { createButton, createButtonContainer, createImportFileButton } from './buttons.js';
 import { createInputElement } from './input.js';
 import { createTrackRow } from './track-table-row.js';
 import { getYoutubeVideoTitle } from './youtube-api.js';
@@ -32,8 +32,7 @@ function createImportTracksButtons(storageKey){
 	const buttonContainer = createButtonContainer('div', 'flex', 'jusify-left', 'importTracksButtonsContainer');
 	buttonContainer.appendChild(createButton("Load Previous Session from Local Storage [TODO]", importTracksFromLocalStorage, storageKey, 'loadSessionLocalStorageBtn'))
 	buttonContainer.appendChild(createButton("Load Tracks from Bookmark [TODO]", importTracksFromBookmark, storageKey, 'loadTracksBookmarkBtn'))
-	buttonContainer.appendChild(createButton("Load Tracks from Txt File [TODO]", importTracksFromFile, storageKey, 'loadTracksTxtFileBtn'))
-	buttonContainer.appendChild(createButton("Load Tracks from Json File [TODO]", importTracksFromFile, storageKey, 'loadTracksJsonFileBtn'))
+	buttonContainer.appendChild(createImportFileButton("Load Tracks from File [TODO]")) //, importTracksFromFile, storageKey, 'loadTracksFileBtn')
 	buttonContainer.appendChild(createButton("Load Tracks from URL [TODO]", importTracksFromUrlFetch, storageKey, 'loadTracksUrlBtn'))
 	buttonContainer.appendChild(createInputElement('text', 'inputFetchTracks'))
 	return buttonContainer;
