@@ -2,6 +2,7 @@ import { appendRowsToTable } from './table.js';
 import { createTrackRow } from './track-table-row.js';
 import { resetTableRowIndexs } from './table.js';
 import { createTableOptions } from './track-table-options.js';
+import { setCurrentlyPlayingTrack } from './local-storage.js';
 
 // export class TracksTable{
 // 	constructor(initialTracks, tableContainerId){
@@ -39,8 +40,15 @@ function createTracksTable(tableId){
 
 const tracksTableDOMChangeCallback = (mutationList) => {
 	for (const mutation of mutationList) {
-		if (mutation.type === 'childList' && mutation.removedNodes.length > 0) {
+		if (mutation.type === 'childList' 
+					&& mutation.removedNodes.length > 0
+					&& mutation.target.tagName==="TABLE") {
+			
 			resetTableRowIndexs(mutation.target.id)
+			// TODO use mutation.nextSibling and mutation.previousSibling to 
+			// change the video to another in the list, 
+			// remember to check if its the first, last or only element in the list
+			setCurrentlyPlayingTrack('', '')
 		} 
 
 		else if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
