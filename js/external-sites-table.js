@@ -1,10 +1,27 @@
 import { createLinkElement } from './links.js';
 
-export function createExternalSitesTable(containerElementId, externalSitesArray){
-	const tableContainerDiv = document.getElementById(containerElementId);
-	externalSitesArray.forEach(externalSiteArray => {
-		tableContainerDiv.appendChild(createLinkRow(externalSiteArray))
-	})
+export class ExternalSitesTable{
+	
+	constructor(externalSitesContainerId){
+		this.externalSitesContainerId = externalSitesContainerId;
+		this.externalSitesTableId = 'externalSitesTable'
+		this.create(this.externalSitesContainerId, this.externalSitesTableId)
+	}
+
+	create(externalSitesContainerId, externalSitesTableId){
+		const table = document.createElement('table')
+		table.id = externalSitesTableId
+		document.getElementById(externalSitesContainerId).appendChild(table)
+	}
+
+	populate(externalSitesArray){
+		if (externalSitesArray != null && Array.isArray(externalSitesArray)){
+			const externalSitesTable = document.getElementById(this.externalSitesTableId);
+			externalSitesArray.forEach(externalSiteArray => {
+				externalSitesTable.appendChild(createLinkRow(externalSiteArray))
+			})
+		}	
+	}
 }
 
 

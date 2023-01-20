@@ -1,30 +1,8 @@
 todos
 
 goals: anonymous/accountless, free, easy music saving and sharing for collecting playlists quickly and playing music easily. make youtubes music great again.
-  
-# Unsorted
-//TODO fix some links not working inside the catalog index.html, requesting to be viewed in youtube (e.g. macroblank) but doesnt happen when played from github pages site
-//TODO add a red live(()) option to the link like the live videos have 
-//TODO Function that cleans up dead links? (yt-player does this I saw, wonder if reactplayer offers this kind of option? surely theres a url I can hit to check?)
-//TODO add seashells theme, nightmode theme, css theme from that open source github hosted blog website
-//TODO function that adds tags and can filter based on tags 
-//TODO function that lets me remove tracks from the list inside the index file (thats a powerful feature to add to a public page so maybe not)?
-
-//TODO keyboard command shortcut https://github.com/darktrojan/openwith/blob/master/webextension/manifest.json
-
-## plugin 
-//todo see if i cna use this in my quest to make plugin easier to use (and not deal with the whole mozilla plugin access thing https://web.dev/new-patterns-for-amazing-apps/)
-//TODO if if move to extension generated index (isntead of github pages) how can i ensure the same level of data persistence like hosting it on github would provide?
-    //whatever I do for tracks I could do for external sites, store it as a similar data structure somewhere
-//TODO add send to local tracks and close window option 
-//TODO add visual confirmation that track has been added to the popup player
-//TODO show error if track not sent (i.e. network error, server isnt up, whatever...)
-//TODO add option to startup server from extension and then kill it after?
-//TODO read this Cache your CORS article https://news.ycombinator.com/item?id=32907234
-//TODO add an option for the plugin to send it to cache, then have option in player to read from cache and save as a url maybe
 
 # Next
-- [ ] import saved songs from file (json?)
 - [ ] export saved songs to file feature
 - [ ] create bookmark from tracks saved
 - [ ] read bookmark to update tracks
@@ -50,8 +28,28 @@ goals: anonymous/accountless, free, easy music saving and sharing for collecting
 - [ ] create radio out of playlist (i.e. shuffle a playlist so it works almost like a radio)
 - [ ] tags (save them in the html row element as an attribute)
 - [ ] queue
-- [ ] playlist
+- [ ] playlist (use json to manange multiple?)
 
+# Unsorted
+//TODO fix some links not working inside the catalog index.html, requesting to be viewed in youtube (e.g. macroblank) but doesnt happen when played from github pages site
+//TODO add a red live(()) option to the link like the live videos have 
+//TODO Function that cleans up dead links? (yt-player does this I saw, wonder if reactplayer offers this kind of option? surely theres a url I can hit to check?)
+//TODO add seashells theme, nightmode theme, css theme from that open source github hosted blog website
+//TODO function that adds tags and can filter based on tags 
+//TODO function that lets me remove tracks from the list inside the index file (thats a powerful feature to add to a public page so maybe not)?
+
+//TODO keyboard command shortcut https://github.com/darktrojan/openwith/blob/master/webextension/manifest.json
+
+## plugin 
+//todo see if i cna use this in my quest to make plugin easier to use (and not deal with the whole mozilla plugin access thing https://web.dev/new-patterns-for-amazing-apps/)
+//TODO if if move to extension generated index (isntead of github pages) how can i ensure the same level of data persistence like hosting it on github would provide?
+    //whatever I do for tracks I could do for external sites, store it as a similar data structure somewhere
+//TODO add send to local tracks and close window option 
+//TODO add visual confirmation that track has been added to the popup player
+//TODO show error if track not sent (i.e. network error, server isnt up, whatever...)
+//TODO add option to startup server from extension and then kill it after?
+//TODO read this Cache your CORS article https://news.ycombinator.com/item?id=32907234
+//TODO add an option for the plugin to send it to cache, then have option in player to read from cache and save as a url maybe
 
 
 # Med

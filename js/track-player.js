@@ -15,18 +15,17 @@
 
 
 export class TrackPlayer {
-	constructor(track, containerElementId){
+	constructor(containerElementId){
 		this.containerDiv = document.getElementById(containerElementId);
-		this.url = track.url;
+		this.createTrackPlayer()
 	}
 
 	createTrackPlayer(){
-		const trackConfig = { attributes: true };
 		window.onstorage = () => {
 			this.loadURL(window.localStorage.getItem('currentTrackUrl'))
 			//https://developer.mozilla.org/en-US/docs/Web/API/Window/storage_event
 		}
-		renderReactPlayer(this.containerDiv, { url: this.url, playing: false, controls: true })
+		renderReactPlayer(this.containerDiv, { url: '', playing: false, controls: true }) //url: this.url (for refernce)
 		createLoopToggle(this.containerDiv)
 	}
 
@@ -39,7 +38,6 @@ export class TrackPlayer {
 	}
 
 	loadURL(updatedURL){ 
-		this.url = updatedURL
 		renderReactPlayer(this.containerDiv, { url: updatedURL, playing: true }) 
 	}
 }

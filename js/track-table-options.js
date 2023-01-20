@@ -23,14 +23,14 @@ export function createTableOptions(tracksLocalStorageKey, tracksTableId){
 
 function createSortingButtons(tableId, containerId){
 	const buttonContainer = createButtonContainer('div', 'flex', 'jusify-left', 'sortingButtonsContainer');
-	buttonContainer.appendChild(createButton("Sort By Index", sortTableByIndex, tableId, 'sortIndexBtn'))
-	buttonContainer.appendChild(createButton("Sort Alphabetically", sortTableAlphabetically, tableId, 'sortAlphabeticalBtn'))
+	buttonContainer.appendChild(createButton("Sort By Index [Possibly broken]", sortTableByIndex, tableId, 'sortIndexBtn'))
+	buttonContainer.appendChild(createButton("Sort Alphabetically [Broken]", sortTableAlphabetically, tableId, 'sortAlphabeticalBtn'))
 	return buttonContainer;
 }
 
 function createImportTracksButtons(storageKey){
 	const buttonContainer = createButtonContainer('div', 'flex', 'jusify-left', 'importTracksButtonsContainer');
-	buttonContainer.appendChild(createImportFileButton("Load Tracks from File [TODO]")) //, importTracksFromFile, storageKey, 'loadTracksFileBtn')
+	buttonContainer.appendChild(createImportFileButton("Load Tracks from Txt File")) //, importTracksFromFile, storageKey, 'loadTracksFileBtn')
 	buttonContainer.appendChild(createButton("Load Previous Session from Local Storage [TODO]", importTracksFromLocalStorage, storageKey, 'loadSessionLocalStorageBtn'))
 	buttonContainer.appendChild(createButton("Load Tracks from Bookmark [TODO]", importTracksFromBookmark, storageKey, 'loadTracksBookmarkBtn'))
 	buttonContainer.appendChild(createButton("Load Tracks from URL [TODO]", importTracksFromUrlFetch, storageKey, 'loadTracksUrlBtn'))

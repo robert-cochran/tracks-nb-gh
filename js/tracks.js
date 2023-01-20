@@ -69,7 +69,7 @@ class Tracks {
 		this.currentTrack = track 
 	}
 
-	getTracks(){ 
+	getArray(){ 
 		return this.tracksArray; 
 	}
 

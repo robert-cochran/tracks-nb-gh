@@ -4,27 +4,51 @@ import { resetTableRowIndexs } from './table.js';
 import { createTableOptions } from './track-table-options.js';
 import { setCurrentlyPlayingTrack } from './local-storage.js';
 
-// export class TracksTable{
-// 	constructor(initialTracks, tableContainerId){
-// 		this.initialTracks = initialTracks
-// 		this.tableContainerId = tableContainerId
-// 		createTrackTable(this.initialTracks, )
-// 	}
-// }
+export class TracksTable {
 
-export async function createTrackTable(tracks, tableContainerElemId){ 
-	const trackRows = await Promise.all(tracks.map(async (track, index) => {
-		return createTrackRow(track.title, track.url, index+1); 
-	}))
+	constructor(tableContainerId){
+		// this.initialTracksArray = initialTracksArray
+		this.tableContainerId = tableContainerId
+		this.tracksLocalStorageKey = "tracks";
+		this.tracksTableId = 'tracksTable'
+	}
 
-	const tracksLocalStorageKey = "tracks";
-	const tracksTableId = 'tracksTable'
-	const tableContainer = document.getElementById(tableContainerElemId);
-	tableContainer.appendChild(createTableOptions(tracksLocalStorageKey, tracksTableId))
-	tableContainer.appendChild(createTracksTable(tracksTableId))
+	async create(initialTracksArray){
+		const trackRows = await Promise.all(initialTracksArray.map(async (track, index) => {
+			return createTrackRow(track.title, track.url, index+1); 
+		}))
+	
+		const tableContainer = document.getElementById(this.tableContainerId);
+		tableContainer.appendChild(createTableOptions(this.tracksLocalStorageKey, this.tracksTableId))
+		tableContainer.appendChild(createTracksTable(this.tracksTableId))
+	
+		appendRowsToTable(trackRows, this.tracksTableId)	
+	}
 
-	appendRowsToTable(trackRows, tracksTableId)	
+	async reset(newTracksArray){
+		this.purge();
+		this.create(newTracksArray);
+	}
+
+	async purge(){
+		document.getElementById(this.tableContainerId).innerHTML = '';
+	}
+
 }
+
+// export async function createTrackTable(tracks, tableContainerElemId){ 
+// 	const trackRows = await Promise.all(tracks.map(async (track, index) => {
+// 		return createTrackRow(track.title, track.url, index+1); 
+// 	}))
+
+// 	const tracksLocalStorageKey = "tracks";
+// 	const tracksTableId = 'tracksTable'
+// 	const tableContainer = document.getElementById(tableContainerElemId);
+// 	tableContainer.appendChild(createTableOptions(tracksLocalStorageKey, tracksTableId))
+// 	tableContainer.appendChild(createTracksTable(tracksTableId))
+
+// 	appendRowsToTable(trackRows, tracksTableId)	
+// }
 
 function createTracksTable(tableId){
 	const table = document.createElement('table');
@@ -37,6 +61,8 @@ function createTracksTable(tableId){
 	table.appendChild(createRowHeader(['Index', 'Track', 'Play', 'Remove']))
 	return table;
 }
+
+
 
 const tracksTableDOMChangeCallback = (mutationList) => {
 //https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver#example
