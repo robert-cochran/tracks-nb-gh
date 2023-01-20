@@ -21,9 +21,7 @@ const fileIn = (mutationList) => {
 }
 
 
-
 export class Controller {
-
 
     constructor(model, view, config){
         this.model = model;
@@ -36,9 +34,8 @@ export class Controller {
         const externalSitesArray = await Model.readExternalSitesArrayFromPath(this.model.externalSitesPath)
         this.view.populateTracksTable(tracks.getArray())
         this.view.setTrackPlayerUrl(tracks.getArray()[0].url)
+        // this.view.populateExternalSites(externalSitesArray)
     }
-
-
 
 
     observerTest(){
@@ -48,9 +45,6 @@ export class Controller {
         const observer = new MutationObserver(fileIn);
         observer.observe(input, mutationConfig);
     }
-
-
-
 
 
     //this will be a bridge
