@@ -7,13 +7,13 @@ import { setCurrentlyPlayingTrack } from './local-storage.js';
 export class TracksTable {
 
 	constructor(tableContainerId){
-		// this.initialTracksArray = initialTracksArray
 		this.tableContainerId = tableContainerId
 		this.tracksLocalStorageKey = "tracks";
 		this.tracksTableId = 'tracksTable'
 	}
 
 	async create(initialTracksArray){
+		this.deleteTable()
 		const trackRows = await Promise.all(initialTracksArray.map(async (track, index) => {
 			return createTrackRow(track.title, track.url, index+1); 
 		}))
@@ -30,25 +30,11 @@ export class TracksTable {
 		this.create(newTracksArray);
 	}
 
-	async purge(){
+	async deleteTable(){
 		document.getElementById(this.tableContainerId).innerHTML = '';
 	}
 
 }
-
-// export async function createTrackTable(tracks, tableContainerElemId){ 
-// 	const trackRows = await Promise.all(tracks.map(async (track, index) => {
-// 		return createTrackRow(track.title, track.url, index+1); 
-// 	}))
-
-// 	const tracksLocalStorageKey = "tracks";
-// 	const tracksTableId = 'tracksTable'
-// 	const tableContainer = document.getElementById(tableContainerElemId);
-// 	tableContainer.appendChild(createTableOptions(tracksLocalStorageKey, tracksTableId))
-// 	tableContainer.appendChild(createTracksTable(tracksTableId))
-
-// 	appendRowsToTable(trackRows, tracksTableId)	
-// }
 
 function createTracksTable(tableId){
 	const table = document.createElement('table');

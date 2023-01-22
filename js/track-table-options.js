@@ -12,8 +12,8 @@ import { getYoutubeVideoTitle } from './youtube-api.js';
 export function createTableOptions(tracksLocalStorageKey, tracksTableId){
 	const tableOptionsContainer = document.createElement('div');
 	tableOptionsContainer.id = 'tracksTableOptions'
-	tableOptionsContainer.appendChild(createSortingButtons(tracksLocalStorageKey));
-	tableOptionsContainer.appendChild(createCheckPlayableVideosButton(tracksLocalStorageKey));
+	tableOptionsContainer.appendChild(createSortingButtons(tracksTableId));
+	tableOptionsContainer.appendChild(createCheckPlayableVideosButton(tracksTableId));
 	tableOptionsContainer.appendChild(createImportTracksButtons(tracksLocalStorageKey));
 	tableOptionsContainer.appendChild(createExportTracksButtons(tracksLocalStorageKey));
 	tableOptionsContainer.appendChild(createAddTrackButton(tracksTableId));
@@ -21,7 +21,7 @@ export function createTableOptions(tracksLocalStorageKey, tracksTableId){
 }
 
 
-function createSortingButtons(tableId, containerId){
+function createSortingButtons(tableId){
 	const buttonContainer = createButtonContainer('div', 'flex', 'jusify-left', 'sortingButtonsContainer');
 	buttonContainer.appendChild(createButton("Sort By Index [Possibly broken]", sortTableByIndex, tableId, 'sortIndexBtn'))
 	buttonContainer.appendChild(createButton("Sort Alphabetically [Broken]", sortTableAlphabetically, tableId, 'sortAlphabeticalBtn'))
@@ -62,25 +62,25 @@ function importTracksFromUrlFetch(tableElemId){
 async function addTrackFromTextInput(tableElemId){
 	// TODO: check the text is a valid youtube url
 	const trackUrl = document.getElementById('inputAddTrack').value;
+	if (trackUrl == null || trackUrl === "") {return;}
 	const tracksTable = document.getElementById(tableElemId);
 	const title = await getYoutubeVideoTitle(trackUrl); //if title === undefined title = 'Video Title Not Found'
-	const url = trackUrl;
 	const index = tracksTable.childElementCount; 
 
 	//check if url already exists in list, if so, dont add
-	if (!checkForUrlInTable(tableElemId, url)){
-		tracksTable.appendChild(createTrackRow(title, url, index));
+	if (!isUrlInTable(tableElemId, trackUrl)){
+		tracksTable.appendChild(createTrackRow(title, trackUrl, index));
 	}
 }
 
-function checkForUrlInTable(tableElemId, url){
+function isUrlInTable(tableElemId, url){
 	const tracks = exportTracksToUrlArray(tableElemId);
 	return tracks.includes(url)
 }
 
 export function createCheckPlayableVideosButton(tableId){
 	const buttonContainer = createButtonContainer("div", "flex", "justify-left", 'checkPlayableVideosButtonsContainer')
-	buttonContainer.appendChild(createButton("Check Playable Videos [TODO]", crossOutUnplayableVideoRows, tableId))
+	buttonContainer.appendChild(createButton("Check Playable Videos [TODO]", crossOutUnplayableVideoRows, tableId, "checkPlayableVideoBtn"))
 	return buttonContainer;
 }
 

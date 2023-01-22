@@ -33,6 +33,7 @@
 // 		- https://www.npmjs.com/package/get-youtube-title
 
 export async function getYoutubeVideoTitle(url){
+	if (url == null || url === ""){return 'Video Title Not Found'}
 	const response = await fetch('https://noembed.com/embed?url=' + url);
 	const jsonData = await response.json();
 	const title = ((jsonData.title != undefined) ? jsonData.title : 'Video Title Not Found' )

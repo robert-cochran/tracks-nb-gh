@@ -6,11 +6,10 @@ async function main() {
 	const config = {
 		defaultTracksFilePath: "./tracks-reduced.txt",
 		tracksTableContainerId: 'containerTracksTable',
-		playerContainerElementId: 'containerPlayer',
+		playerContainerId: 'containerPlayer',
 		externalSitesPath: './external-sites.md',
 		externalSitesContainerId: "containerExternalSites"
 	}
-
 	const controller = new Controller(new Model(config), new View(config), config);
 	controller.load();
 }

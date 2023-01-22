@@ -3,15 +3,16 @@ todos
 goals: anonymous/accountless, free, easy music saving and sharing for collecting playlists quickly and playing music easily. make youtubes music great again.
 
 # Next
+- [ ] import songs properly (from view to model back to view)
+    - [ ] need to store tracks object in model
+    - 
 - [ ] export saved songs to file feature
 - [ ] create bookmark from tracks saved
 - [ ] read bookmark to update tracks
 - [ ] drag and drop feature to import songs from file
     - https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API
     - https://developer.mozilla.org/en-US/docs/Web/API/File_API/Using_files_from_web_applications#selecting_files_using_drag_and_drop
-- [ ] implement Controller to untangle the mess of shit in tracks with passing data around and updating view
-- [ ] turn more of the js files into classes
-- [ ] with all these classes is this better to be made in react? or better yet something like svelt which is supposed to be smaller faster etc...
+- [ ] custom context menu to hide all the buttons?
 - [ ] sync session backup, 
     - [ ] store urls in localStorage to let user close out of tab and come back to urls they added before
             so if user closes tab and tracks has urls then it will populate table with those instead of the default list
@@ -37,6 +38,7 @@ goals: anonymous/accountless, free, easy music saving and sharing for collecting
 //TODO add seashells theme, nightmode theme, css theme from that open source github hosted blog website
 //TODO function that adds tags and can filter based on tags 
 //TODO function that lets me remove tracks from the list inside the index file (thats a powerful feature to add to a public page so maybe not)?
+- [ ] if theres a failure of import (or partial) of tracks file into page it might be because of bottleneck localstorage
 
 //TODO keyboard command shortcut https://github.com/darktrojan/openwith/blob/master/webextension/manifest.json
 

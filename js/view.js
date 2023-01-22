@@ -9,9 +9,10 @@ export class View{
         this._externalSitesPath = config.externalSitesPath;
         this._externalSitesContainerId = config.externalSitesContainerId
 
-        this.trackPlayer = new TrackPlayer(config.playerContainerElementId)
+        this.trackPlayer = new TrackPlayer(config.playerContainerId)
         this.tracksTable = new TracksTable(config.tracksTableContainerId)
         this.externalSitesTable = new ExternalSitesTable(config.externalSitesContainerId)
+        
     }
 
     setTrackPlayerUrl(url){
@@ -41,4 +42,6 @@ export class View{
     get externalSitesId(){
         return this._externalSitesId
     }
+
+   
 }

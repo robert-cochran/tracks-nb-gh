@@ -16,13 +16,14 @@ export async function createTracksFromUrlPath(urlsPath){
 }
 
 export async function createTracksFromArray(array){
-	const unfilteredURLs = array.split(/\r?\n/);
+	// console.log(array)
+	// const unfilteredURLs = array.split(/\r?\n/);
 
-	const urlArray = unfilteredURLs.filter(url => {
-		return url.length > 1
-	})
+	const filteredUrlArray = array.filter(url => {
+		return (url.length > 1 && url.includes('youtube.com'))
+	});
 	
-	const tracksArray = await Promise.all(urlArray.map(async url => {
+	const tracksArray = await Promise.all(filteredUrlArray.map(async url => {
 		const title = await getYoutubeVideoTitle(url)
 		const track = new Track(title, url)
 		return track

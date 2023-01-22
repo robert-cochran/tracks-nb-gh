@@ -6,8 +6,12 @@ export class Model{
     constructor(config){
         this._defaultTracksFilePath = config.defaultTracksFilePath
         this._externalSitesPath = config.externalSitesPath
-        this.tracks = null
+        this._tracks = null;
+
+        
     }
+
+    //need to store the Tracks object in here
 
     static async createTracksFromFile(tracksFilePath){
         if (tracksFilePath != null && typeof tracksFilePath === "string"){
@@ -31,5 +35,13 @@ export class Model{
 
     get externalSitesPath(){
         return this._externalSitesPath
+    }
+
+    get tracks(){
+        return this._tracks
+    }
+
+    setTracks(tracks){
+        this._tracks = tracks;
     }
 }
