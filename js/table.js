@@ -6,12 +6,10 @@ export function exportTracksToElementArray(tableId){
 }
 
 export function exportTracksToUrlArray(tableId){
-	const tracksTable = document.getElementById(tableId);
-	const trackRows = [...tracksTable.getElementsByTagName('tr')];
-	trackRows.shift();
-	const urls = trackRows.map(htmlTrackElem => {
-		return htmlTrackElem.getAttribute("url")
-	})
+	const urls = exportTracksToElementArray(tableId)
+		.map(htmlTrackElem => {
+			return htmlTrackElem.getAttribute("url")
+		})
 	return urls;
 }
 

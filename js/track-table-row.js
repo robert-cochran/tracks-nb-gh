@@ -1,5 +1,3 @@
-import { setCurrentlyPlayingTrack } from './local-storage.js'
-import { updateCurrentTrack } from './controller.js'
 import { createPlayButton, createDeleteButton } from './element.buttons.js'
 
 export function createTrackRow(title, url, index) {

@@ -2,7 +2,6 @@ import { sortTableAlphabetically, sortTableByIndex} from './table-sort.js'
 import { exportTracksToUrlArray } from './table.js';
 import { isVideoPlayable } from './track-player.js';
 import { importTracksFromBookmark, exportTracksToBookmark } from './bookmarks.js';
-import { importTracksFromLocalStorage, saveTracksArrayToLocalStorage } from './local-storage.js';
 import { importTracksFromFile, exportTracksToFile } from './file-system.js';
 import { createButton, createButtonContainer, createImportFileButton, createExportFileButton } from './element.buttons.js';
 import { createInputElement } from './element.input.js';

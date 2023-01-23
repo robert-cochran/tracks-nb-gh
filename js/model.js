@@ -50,6 +50,10 @@ export class Model{
         return this._tracks
     }
 
+    static get tracksStatic(){
+        return this._tracks;
+    }
+
     setTracks(tracks){
         this._tracks = tracks;
     }

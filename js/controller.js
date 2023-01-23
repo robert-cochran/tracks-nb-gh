@@ -4,6 +4,7 @@ import {TracksTable} from './track-table.js'
 import {readLinesFromFile, parseStringByDelimiter} from './file-system.js'
 import { View } from './view.js'
 import { Model } from './model.js'
+import { exportTracksToUrlArray } from './table.js'
 //point of this is to monitor changes to the model (i.e. localStorage) and make changes to the view
 
 //use this as a mediator between front end and lcoalStorage
@@ -64,9 +65,16 @@ export class Controller {
     
 
     onFileImport = txtFile => {}
-}
 
-export function updateCurrentTrack(title, url){
-    console.log(title, url)
-    Model.setCurrentTrackStatic(title, url)
+    static updateCurrentTrack(title, url){
+        Model.setCurrentTrackStatic(title, url)
+    }
+
+    static getTracks(){
+        // return Model.getTracksStatic();
+        //TODO FIXME. Need to pass controller around everywhere in order to call conrtollers internal variables
+        //THIS IS A DIRTY HACK
+        console.log(exportTracksToUrlArray('tracksTable'))
+        return exportTracksToUrlArray('tracksTable')
+    }
 }
