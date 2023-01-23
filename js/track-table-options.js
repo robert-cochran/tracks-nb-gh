@@ -4,8 +4,8 @@ import { isVideoPlayable } from './track-player.js';
 import { importTracksFromBookmark, exportTracksToBookmark } from './bookmarks.js';
 import { importTracksFromLocalStorage, saveTracksArrayToLocalStorage } from './local-storage.js';
 import { importTracksFromFile, exportTracksToFile } from './file-system.js';
-import { createButton, createButtonContainer, createImportFileButton } from './buttons.js';
-import { createInputElement } from './input.js';
+import { createButton, createButtonContainer, createImportFileButton, createExportFileButton } from './element.buttons.js';
+import { createInputElement } from './element.input.js';
 import { createTrackRow } from './track-table-row.js';
 import { getYoutubeVideoTitle } from './youtube-api.js';
 
@@ -31,19 +31,21 @@ function createSortingButtons(tableId){
 function createImportTracksButtons(storageKey){
 	const buttonContainer = createButtonContainer('div', 'flex', 'jusify-left', 'importTracksButtonsContainer');
 	buttonContainer.appendChild(createImportFileButton("Load Tracks from Txt File")) //, importTracksFromFile, storageKey, 'loadTracksFileBtn')
-	buttonContainer.appendChild(createButton("Load Previous Session from Local Storage [TODO]", importTracksFromLocalStorage, storageKey, 'loadSessionLocalStorageBtn'))
+	// buttonContainer.appendChild(createButton("Load Previous Session from Local Storage [TODO]", importTracksFromLocalStorage, storageKey, 'loadSessionLocalStorageBtn'))
+	//it should automatically load tracks from localStorage if localStorage has any thing in localStorage.tracks in it
+	//otherwise load default
 	buttonContainer.appendChild(createButton("Load Tracks from Bookmark [TODO]", importTracksFromBookmark, storageKey, 'loadTracksBookmarkBtn'))
-	buttonContainer.appendChild(createButton("Load Tracks from URL [TODO]", importTracksFromUrlFetch, storageKey, 'loadTracksUrlBtn'))
-	buttonContainer.appendChild(createInputElement('text', 'inputFetchTracks'))
-	buttonContainer.appendChild(createButton("Sync Tracks Externally [TODO][EXPERIMENTAL]", importTracksFromUrlFetch, storageKey, 'syncTracksExternalBtn'))
+	// buttonContainer.appendChild(createButton("Load Tracks from URL [TODO]", importTracksFromUrlFetch, storageKey, 'loadTracksUrlBtn'))
+	// buttonContainer.appendChild(createInputElement('text', 'inputFetchTracks'))
+	// buttonContainer.appendChild(createButton("Sync Tracks Externally [TODO][EXPERIMENTAL]", importTracksFromUrlFetch, storageKey, 'syncTracksExternalBtn'))
 	return buttonContainer;
 }
 
 function createExportTracksButtons(storageKey){
 	const buttonContainer = createButtonContainer('div', 'flex', 'jusify-left', 'exportTracksButtonsContainer');
-	buttonContainer.appendChild(createButton("Save Tracks in Local Storage [TODO]", saveTracksArrayToLocalStorage, storageKey, 'saveTracksLocalStorageBtn'))
+	buttonContainer.appendChild(createExportFileButton("Save Tracks to Txt File [TODO]", exportTracksToFile, storageKey, 'saveTracksFileBtn'))
+	// buttonContainer.appendChild(createButton("Save Tracks in Local Storage [TODO]", saveTracksArrayToLocalStorage, storageKey, 'saveTracksLocalStorageBtn'))
 	buttonContainer.appendChild(createButton("Save Tracks to Bookmark [TODO]", exportTracksToBookmark, storageKey, 'saveTracksBookmarkBtn'))
-	buttonContainer.appendChild(createButton("Save Tracks to File [TODO]", exportTracksToFile, storageKey, 'saveTracksFileBtn'))
 	return buttonContainer;
 }
 

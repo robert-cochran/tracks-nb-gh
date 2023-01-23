@@ -19,7 +19,9 @@ export async function saveToLocalStorage(key, value){
 export async function setCurrentlyPlayingTrack(trackTitle, trackUrl){
     saveToLocalStorage('currentTrackTitle', trackTitle);
     saveToLocalStorage('currentTrackUrl', trackUrl);
-    window.dispatchEvent( new Event('storage') )
+    const event = new Event('storage');
+    event.key = 'updatedCurrentTrack'
+    window.dispatchEvent( event )
     // event is dispatched manually bc firefox only updates OTHER pages in the same domain 
     //  with the triggered event (i.e. doesnt work for same page)
     // ReactPlayer reads localStorage event triggers to determine what to play

@@ -8,11 +8,16 @@ export class View{
         this._playerContainerId = config.playerContainerId;
         this._externalSitesPath = config.externalSitesPath;
         this._externalSitesContainerId = config.externalSitesContainerId
-
+        this._controller = null;
+        
         this.trackPlayer = new TrackPlayer(config.playerContainerId)
         this.tracksTable = new TracksTable(config.tracksTableContainerId)
         this.externalSitesTable = new ExternalSitesTable(config.externalSitesContainerId)
         
+    }
+
+    registerController(controller){
+        this._controller = controller;
     }
 
     setTrackPlayerUrl(url){

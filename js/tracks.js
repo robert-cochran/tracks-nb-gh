@@ -16,9 +16,6 @@ export async function createTracksFromUrlPath(urlsPath){
 }
 
 export async function createTracksFromArray(array){
-	// console.log(array)
-	// const unfilteredURLs = array.split(/\r?\n/);
-
 	const filteredUrlArray = array.filter(url => {
 		return (url.length > 1 && url.includes('youtube.com'))
 	});
@@ -47,7 +44,6 @@ async function loadURLsFromFilePath(urlsPath) {
 }
 
 class Tracks {
-
 	//tracks is an array of Track objects
 	//currentTrack is a Track object
 	constructor(tracksArray, currentTrack){

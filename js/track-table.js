@@ -20,8 +20,7 @@ export class TracksTable {
 	
 		const tableContainer = document.getElementById(this.tableContainerId);
 		tableContainer.appendChild(createTableOptions(this.tracksLocalStorageKey, this.tracksTableId))
-		tableContainer.appendChild(createTracksTable(this.tracksTableId))
-	
+		tableContainer.appendChild(createEmptyTracksTable(this.tracksTableId))
 		appendRowsToTable(trackRows, this.tracksTableId)	
 	}
 
@@ -36,7 +35,7 @@ export class TracksTable {
 
 }
 
-function createTracksTable(tableId){
+function createEmptyTracksTable(tableId){
 	const table = document.createElement('table');
 	table.id = tableId;
 	

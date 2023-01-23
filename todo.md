@@ -3,12 +3,14 @@ todos
 goals: anonymous/accountless, free, easy music saving and sharing for collecting playlists quickly and playing music easily. make youtubes music great again.
 
 # Next
-- [ ] import songs properly (from view to model back to view)
-    - [ ] need to store tracks object in model
-    - 
 - [ ] export saved songs to file feature
+
+bookmarks
 - [ ] create bookmark from tracks saved
 - [ ] read bookmark to update tracks
+- [ ] easily creatable/saveable anonymous playlists 
+    - (bookmarks?)
+
 - [ ] drag and drop feature to import songs from file
     - https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API
     - https://developer.mozilla.org/en-US/docs/Web/API/File_API/Using_files_from_web_applications#selecting_files_using_drag_and_drop
@@ -18,18 +20,17 @@ goals: anonymous/accountless, free, easy music saving and sharing for collecting
             so if user closes tab and tracks has urls then it will populate table with those instead of the default list
     - [ ] save urls with only their unique video id to save space
     - [ ] when adding/deleting a track add a fading message that localStorage has been updated
-    - [ ] when adding a new track, sync trackstable to localstorage.allTracks first
-    - [ ] delete button next to tracks, sync updated trackstable to localStorage.allTracks
+    - [ ] when adding a new track, sync trackstable to localstorage.tracks first
+    - [ ] delete button next to tracks, sync updated trackstable to localStorage.tracks
 
 # High
 - [ ] TODO strike out videos that cant be played
     - [ ] RELATED: check track added through user input is an actual url? (similar in function to check playable videos really)
-- [ ] easily creatable/saveable anonymous playlists 
-    - (bookmarks?)
 - [ ] create radio out of playlist (i.e. shuffle a playlist so it works almost like a radio)
 - [ ] tags (save them in the html row element as an attribute)
 - [ ] queue
 - [ ] playlist (use json to manange multiple?)
+- [ ] do i need the Tracks class? can I have model do what its doing (essentially tying current track with tracks array)
 
 # Unsorted
 //TODO fix some links not working inside the catalog index.html, requesting to be viewed in youtube (e.g. macroblank) but doesnt happen when played from github pages site

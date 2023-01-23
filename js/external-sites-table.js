@@ -1,4 +1,4 @@
-import { createLinkElement } from './links.js';
+import { createAnchorElement } from './element.anchor.js';
 
 export class ExternalSitesTable{
 	
@@ -32,10 +32,10 @@ function createLinkRow(rowContents){
 	const externalSiteLink = allLinks.shift();
 
 	const row = document.createElement("tr");
-	row.appendChild(createLinkElement(externalSiteName, externalSiteLink))
+	row.appendChild(createAnchorElement(externalSiteName, externalSiteLink))
 	allNames.forEach((affiliatedSiteName, index) => {
 		row.insertAdjacentText("beforeend", " - ");
-		row.appendChild(createLinkElement(affiliatedSiteName, allLinks[index]))
+		row.appendChild(createAnchorElement(affiliatedSiteName, allLinks[index]))
 	})
 	return row;
 }

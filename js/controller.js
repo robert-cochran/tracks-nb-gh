@@ -20,7 +20,9 @@ const fileIn = (mutationList) => {
     }
 }
 
-
+//mvc setup examples
+//https://github.com/taniarascia/mvc/blob/master/script.js
+//https://blog.sessionstack.com/how-javascript-works-writing-modular-and-reusable-code-with-mvc-16c65cbd9f64
 export class Controller {
 
     constructor(model, view, config){
@@ -36,12 +38,7 @@ export class Controller {
         const externalSitesArray = await Model.readExternalSitesArrayFromPath(this.model.externalSitesPath)
         this.view.populateTracksTable(tracks.getArray())
         this.view.setTrackPlayerUrl(tracks.getArray()[0].url)
-
-       
-
-        
         // this.view.populateExternalSites(externalSitesArray)
-        // this.observerTest()
     }
 
     setEventHandlers(){
@@ -49,50 +46,27 @@ export class Controller {
         window.onstorage = async (event) => {
             if (event.key === 'tracks'){
                 const tracksUrlArray = window.localStorage.getItem('tracks').split(',');
-                // console.log(tracksUrlArray)
                 const tracks = await createTracksFromArray(tracksUrlArray)
-                console.log(tracks)
                 this.model.setTracks(tracks)
                 this.view.populateTracksTable(this.model.tracks.getArray())
             }
+            else if (event.key === 'updatedCurrentTrack'){
+                this.view.setTrackPlayerUrl(localStorage.currentTrackUrl)
+            }
+            
 		}
 
-
-
+        window.click = async (event) => {
+            console.log(event);
+            this.model.setCurrentTrack()
+        }
     }
-
-
-    // observerTest(){
-        // const input = document.getElementById('importFileInput');
-        // const mutationConfig = { attributes: true, childList: false, subtree: false };
-        // const observer = new MutationObserver(fileIn);
-        // observer.observe(input, mutationConfig);
-    // }
-
-    /**
-        NOTE:       this will be a bridge
-                    which means we need a way to call or be notified when model changes
-        
-        QUESTION:   how do i run this callback when the file is loaded
-                    i could have an attribute on the input button that I change once I have the file contents
-                    and a mutation observer on that attribute to signal there is new content
-
-        QUESTION:   can we run its callback event here instead of in buttons.js?
-                    so the data we want in inside the triggered event, 
-                    and events will provide that file data to anyone thats
-                    added an eventListener to that attribute right?
-                    so if i add a 'change' event listener to the input, 
-                    then I can access the data here ( which would require me processing it )
-
-        OPTION 1:   get the event dispatched from the input elem and sned it to the model
-
-        OPTION 2:   from teh input callback redispatch the event but from a source I choose
-                    (i.e. a source that exists in the model that can listen and handle events)
-     */
     
-    
-    onFileImport = txtFile => {
 
-        
-    }
+    onFileImport = txtFile => {}
+}
+
+export function updateCurrentTrack(title, url){
+    console.log(title, url)
+    Model.setCurrentTrackStatic(title, url)
 }
