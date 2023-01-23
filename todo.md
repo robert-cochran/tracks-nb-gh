@@ -3,14 +3,11 @@ todos
 goals: anonymous/accountless, free, easy music saving and sharing for collecting playlists quickly and playing music easily. make youtubes music great again.
 
 # Next
-- [ ] export saved songs to file feature
-
 bookmarks
-- [ ] create bookmark from tracks saved
-- [ ] read bookmark to update tracks
-- [ ] easily creatable/saveable anonymous playlists 
-    - (bookmarks?)
-
+    - [ ] create bookmark from tracks saved
+    - [ ] read bookmark to update tracks
+    - [ ] easily creatable/saveable anonymous playlists 
+        - (bookmarks?)
 - [ ] drag and drop feature to import songs from file
     - https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API
     - https://developer.mozilla.org/en-US/docs/Web/API/File_API/Using_files_from_web_applications#selecting_files_using_drag_and_drop

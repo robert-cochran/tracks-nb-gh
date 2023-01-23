@@ -106,6 +106,14 @@ function handleReadFileContents(event){
 	}, false);
 }
 
+export function createImportBookmarkButton(){
+
+}
+
+export function createExportBookmarkButton(){
+	
+}
+
 
 export function createButtonContainer(elementTag, display, justifyContent, id){
 	const buttonContainer = document.createElement(elementTag)
