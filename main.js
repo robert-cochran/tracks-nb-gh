@@ -4,7 +4,7 @@ import { Controller } from './js/controller.js'
 
 async function main() {
 	const config = {
-		defaultTracksFilePath: "./tracks-reduced.txt",
+		defaultTracksFilePath: "./tracks.txt",
 		trackTableContainerId: 'containerTracksTable',
 		playerContainerId: 'containerPlayer',
 		externalSitesPath: './external-sites.md',
