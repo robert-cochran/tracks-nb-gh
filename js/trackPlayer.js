@@ -15,7 +15,8 @@
 
 
 export class TrackPlayer {
-	constructor(containerElementId){
+	constructor(controller, containerElementId){
+		this.controller = controller;
 		this.containerDiv = document.getElementById(containerElementId);
 		this.createTrackPlayer()
 	}

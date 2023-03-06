@@ -1,6 +1,6 @@
 import { createTracksFromUrlPath } from "./tracks.js"
-import { readLinesFromFile, parseStringByDelimiter } from "./file-system.js"
-import { setCurrentlyPlayingTrack } from "./local-storage.js"
+import { readLinesFromFile, parseStringByDelimiter } from "./fileSystem.js"
+import { setCurrentlyPlayingTrack } from "./localStorage.js"
 
 export class Model{
 

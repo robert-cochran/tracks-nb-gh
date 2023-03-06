@@ -1,22 +1,22 @@
-import { sortTableAlphabetically, sortTableByIndex} from './table-sort.js' 
+import { sortTableAlphabetically, sortTableByIndex} from './table.sort.js' 
 import { exportTracksToUrlArray } from './table.js';
-import { isVideoPlayable } from './track-player.js';
+import { isVideoPlayable } from './trackPlayer.js';
 import { importTracksFromBookmark, exportTracksToBookmark } from './bookmarks.js';
-import { importTracksFromFile, exportTracksToFile } from './file-system.js';
+import { importTracksFromFile, exportTracksToFile } from './fileSystem.js';
 import { createButton, createButtonContainer, createImportFileButton, createExportFileButton } from './element.buttons.js';
 import { createInputElement } from './element.input.js';
-import { createTrackRow } from './track-table-row.js';
+import { createTrackRow } from './trackTable.row.js';
 import { getYoutubeVideoTitle } from './youtube-api.js';
 
-export function createTableOptions(tracksLocalStorageKey, tracksTableId){
-	const tableOptionsContainer = document.createElement('div');
-	tableOptionsContainer.id = 'tracksTableOptions'
-	tableOptionsContainer.appendChild(createSortingButtons(tracksTableId));
-	tableOptionsContainer.appendChild(createCheckPlayableVideosButton(tracksTableId));
-	tableOptionsContainer.appendChild(createImportTracksButtons(tracksLocalStorageKey));
-	tableOptionsContainer.appendChild(createExportTracksButtons(tracksLocalStorageKey));
-	tableOptionsContainer.appendChild(createAddTrackButton(tracksTableId));
-	return tableOptionsContainer;
+export function createTrackTableOptions(tableId){
+	const tableOptionsElem = document.createElement('div');
+	tableOptionsElem.id = 'trackTableOptions'
+	tableOptionsElem.appendChild(createSortingButtons(tableId));
+	tableOptionsElem.appendChild(createCheckPlayableVideosButton(tableId));
+	tableOptionsElem.appendChild(createImportTracksButtons());
+	tableOptionsElem.appendChild(createExportTracksButtons());
+	tableOptionsElem.appendChild(createAddTrackButton(tableId));
+	return tableOptionsElem;
 }
 
 
@@ -27,24 +27,24 @@ function createSortingButtons(tableId){
 	return buttonContainer;
 }
 
-function createImportTracksButtons(storageKey){
+function createImportTracksButtons(){
 	const buttonContainer = createButtonContainer('div', 'flex', 'jusify-left', 'importTracksButtonsContainer');
 	buttonContainer.appendChild(createImportFileButton("Load Tracks from Txt File")) //, importTracksFromFile, storageKey, 'loadTracksFileBtn')
 	// buttonContainer.appendChild(createButton("Load Previous Session from Local Storage [TODO]", importTracksFromLocalStorage, storageKey, 'loadSessionLocalStorageBtn'))
 	//it should automatically load tracks from localStorage if localStorage has any thing in localStorage.tracks in it
 	//otherwise load default
-	buttonContainer.appendChild(createButton("Load Tracks from Bookmark [TODO]", importTracksFromBookmark, storageKey, 'loadTracksBookmarkBtn'))
+	buttonContainer.appendChild(createButton("Load Tracks from Bookmark [TODO]", importTracksFromBookmark, '', 'loadTracksBookmarkBtn'))
 	// buttonContainer.appendChild(createButton("Load Tracks from URL [TODO]", importTracksFromUrlFetch, storageKey, 'loadTracksUrlBtn'))
 	// buttonContainer.appendChild(createInputElement('text', 'inputFetchTracks'))
 	// buttonContainer.appendChild(createButton("Sync Tracks Externally [TODO][EXPERIMENTAL]", importTracksFromUrlFetch, storageKey, 'syncTracksExternalBtn'))
 	return buttonContainer;
 }
 
-function createExportTracksButtons(storageKey){
+function createExportTracksButtons(){
 	const buttonContainer = createButtonContainer('div', 'flex', 'jusify-left', 'exportTracksButtonsContainer');
-	buttonContainer.appendChild(createExportFileButton("Save Tracks to Txt File [TODO]", exportTracksToFile, storageKey, 'saveTracksFileBtn'))
+	buttonContainer.appendChild(createExportFileButton("Save Tracks to Txt File [TODO]", exportTracksToFile, '', 'saveTracksFileBtn'))
 	// buttonContainer.appendChild(createButton("Save Tracks in Local Storage [TODO]", saveTracksArrayToLocalStorage, storageKey, 'saveTracksLocalStorageBtn'))
-	buttonContainer.appendChild(createButton("Save Tracks to Bookmark [TODO]", exportTracksToBookmark, storageKey, 'saveTracksBookmarkBtn'))
+	buttonContainer.appendChild(createButton("Save Tracks to Bookmark [TODO]", exportTracksToBookmark, '', 'saveTracksBookmarkBtn'))
 	return buttonContainer;
 }
 

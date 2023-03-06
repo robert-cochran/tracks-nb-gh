@@ -1,25 +1,10 @@
-import {TrackPlayer} from './track-player.js'
+import {TrackPlayer} from './trackPlayer.js'
 import {createTracksFromUrlPath, createTracksFromArray} from './tracks.js'
-import {TracksTable} from './track-table.js'
-import {readLinesFromFile, parseStringByDelimiter} from './file-system.js'
+import {TrackTable} from './trackTable.js'
+import {readLinesFromFile, parseStringByDelimiter} from './fileSystem.js'
 import { View } from './view.js'
 import { Model } from './model.js'
 import { exportTracksToUrlArray } from './table.js'
-//point of this is to monitor changes to the model (i.e. localStorage) and make changes to the view
-
-//use this as a mediator between front end and lcoalStorage
-
-//could return the code to store the currently playing info inside an attribute using the mutation / observer, 
-//  and having a html elem attribute for active, but honestly this is probably better 
-
-const fileIn = (mutationList) => {
-    for (const mutation of mutationList) {
-        if (mutation.type === 'attributes') {
-            console.log(`The input element attribute was modified.`);
-            console.log(`The ${mutation.Files} attribute was modified.`);
-        }
-    }
-}
 
 //mvc setup examples
 //https://github.com/taniarascia/mvc/blob/master/script.js
@@ -30,14 +15,18 @@ export class Controller {
         this.model = model;
         this.view = view;
         this.config = config;
-        
         this.setEventHandlers()
     }
 
     async load(){
         const tracks = await Model.createTracksFromFile(this.model.defaultTracksFilePath)
         const externalSitesArray = await Model.readExternalSitesArrayFromPath(this.model.externalSitesPath)
-        this.view.populateTracksTable(tracks.getArray())
+        this.loadView(tracks, externalSitesArray)
+    }
+
+    loadView(tracks, externalSitesArray){
+        this.view.load();
+        this.view.populateTrackTable(tracks.getArray())
         this.view.setTrackPlayerUrl(tracks.getArray()[0].url)
         // this.view.populateExternalSites(externalSitesArray)
     }
@@ -62,9 +51,6 @@ export class Controller {
             this.model.setCurrentTrack()
         }
     }
-    
-
-    onFileImport = txtFile => {}
 
     static updateCurrentTrack(title, url){
         Model.setCurrentTrackStatic(title, url)

@@ -1,6 +1,6 @@
 export function exportTracksToElementArray(tableId){
-	const tracksTable = document.getElementById(tableId);
-	const trackRows = [...tracksTable.getElementsByTagName('tr')];
+	const trackTable = document.getElementById(tableId);
+	const trackRows = [...trackTable.getElementsByTagName('tr')];
 	trackRows.shift();
 	return trackRows;
 }
@@ -13,9 +13,9 @@ export function exportTracksToUrlArray(tableId){
 	return urls;
 }
 
-export function appendRowsToTable(rows, table){
+export function appendRowsToTable(rows, tableId){
 	rows.map(row => {
-		document.getElementById(table).appendChild(row)
+		document.getElementById(tableId).appendChild(row)
 	})
 }
 
@@ -28,4 +28,14 @@ export function resetTableRowIndexs(tableId){
 		}
 	})
 	
+}
+
+export function createRowHeader(headers){
+	const rowHeader = document.createElement('tr')
+	headers.forEach(headerText => {
+		const header = document.createElement('th')
+		header.innerText = headerText
+		rowHeader.appendChild(header)
+	})
+    return rowHeader;
 }

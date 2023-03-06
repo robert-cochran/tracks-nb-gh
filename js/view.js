@@ -1,39 +1,55 @@
-import { TracksTable } from "./track-table.js";
-import { TrackPlayer } from "./track-player.js";
-import { ExternalSitesTable } from "./external-sites-table.js";
+import { TrackTable } from "./trackTable.js";
+import { TrackPlayer } from "./trackPlayer.js";
+import { createTrackTableOptions } from "./trackTableOptions.js";
+import { ExternalSitesTable } from "./externalSitesTable.js";
 
 export class View{
     constructor(config){
-        this._tracksTableContainerId = config.tracksTableContainerId;
         this._playerContainerId = config.playerContainerId;
+        this._trackTableContainerId = config.trackTableContainerId;
+        this._trackTableContainerElem = document.getElementById(this._trackTableContainerId)
         this._externalSitesPath = config.externalSitesPath;
         this._externalSitesContainerId = config.externalSitesContainerId
         this._controller = null;
         
-        this.trackPlayer = new TrackPlayer(config.playerContainerId)
-        this.tracksTable = new TracksTable(config.tracksTableContainerId)
-        this.externalSitesTable = new ExternalSitesTable(config.externalSitesContainerId)
-        
+        this._trackPlayer = null;
+        this._trackTable = null;
+        this._trackTableElem = null; 
+        this._externalSitesTable = null;
+        this._trackTableOptionsElem = null;
     }
 
     registerController(controller){
         this._controller = controller;
     }
 
-    setTrackPlayerUrl(url){
-        this.trackPlayer.loadURL(url)
+    async load(){
+        this._trackPlayer = new TrackPlayer(this._controller, this._playerContainerId);
+        
+        this._trackTableOptionsElem = createTrackTableOptions()
+        this._trackTableContainerElem.appendChild(this._trackTableOptionsElem)
+
+        this._trackTable = new TrackTable(this._controller, this._trackTableContainerId);
+        this._trackTableElem = this._trackTable.create();
+        this._trackTableContainerElem.appendChild(this._trackTableElem)
+
+        this._externalSitesTable = new ExternalSitesTable(this._externalSitesContainerId);
     }
 
-    populateTracksTable(tracksArray){
-        this.tracksTable.create(tracksArray)
+    setTrackPlayerUrl(url){
+        this._trackPlayer.loadURL(url)
+    }
+
+    populateTrackTable(tracksArray){
+        this._trackTable.populate(tracksArray)
     }
 
     populateExternalSites(externalSitesArray){
-        this.externalSitesTable.populate(externalSitesArray);
+        this._externalSitesTable.populate(externalSitesArray);
     }
 
-    get tracksTableContainerId(){
-        return this._tracksTableContainerId
+    get trackTableContainerId(){
+        return this._trackTableContainerId
     }
 
     get playerContainerId(){

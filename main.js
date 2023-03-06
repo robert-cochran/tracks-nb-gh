@@ -5,7 +5,7 @@ import { Controller } from './js/controller.js'
 async function main() {
 	const config = {
 		defaultTracksFilePath: "./tracks-reduced.txt",
-		tracksTableContainerId: 'containerTracksTable',
+		trackTableContainerId: 'containerTracksTable',
 		playerContainerId: 'containerPlayer',
 		externalSitesPath: './external-sites.md',
 		externalSitesContainerId: "containerExternalSites"
@@ -18,7 +18,7 @@ async function main() {
 	const view = new View(config);
 	const controller = new Controller(model, view, config);
 	model.registerController(controller)
-	model.registerController(controller)
+	view.registerController(controller)
 	controller.load();
 }
 

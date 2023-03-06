@@ -107,7 +107,7 @@ function handleReadFileContents(event){
 }
 
 export function createImportBookmarkButton(){
-
+	//in order to get this to work I need to know if im running locally or running in public domain
 }
 
 export function createExportBookmarkButton(){

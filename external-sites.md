@@ -1,6 +1,7 @@
 Music for Programming||https://musicforprogramming.net/latest/||HN||https://news.ycombinator.com/item?id=32009440"
 Flowful.app||https://flowful.app||HN||https://news.ycombinator.com/item?id=32149989
 ambient.li||https://ambient.li
+naturallanguageplaylist.com (dall-e for playlist, ML gen)||https://www.naturallanguageplaylist.com/||HN||https://news.ycombinator.com/item?id=34444286
 lifeat.io||https://lifeat.io
 plaza.one||https://plaza.one/
 poolsuite||https://poolsuite.net/
