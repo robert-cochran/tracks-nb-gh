@@ -1,39 +1,110 @@
-todos
+TODOS
 
-goals: anonymous/accountless, free, easy music saving and sharing for collecting playlists quickly and playing music easily. make youtubes music great again.
+    GOALS:      anonymous/accountless, 
+                free, 
+                easy music saving and sharing for collecting playlists quickly 
+                    and playing music easily. 
+                make youtubes music great again.
 
 # Next
-bookmarks
-    - [ ] create bookmark from tracks saved
-    - [ ] read bookmark to update tracks
-    - [ ] easily creatable/saveable anonymous playlists 
-        - (bookmarks?)
-- [ ] drag and drop feature to import songs from file
-    - https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API
-    - https://developer.mozilla.org/en-US/docs/Web/API/File_API/Using_files_from_web_applications#selecting_files_using_drag_and_drop
-- [ ] custom context menu to hide all the buttons?
-- [ ] sync session backup, 
-    - [ ] store urls in localStorage to let user close out of tab and come back to urls they added before
-            so if user closes tab and tracks has urls then it will populate table with those instead of the default list
-    - [ ] save urls with only their unique video id to save space
-    - [ ] when adding/deleting a track add a fading message that localStorage has been updated
-    - [ ] when adding a new track, sync trackstable to localstorage.tracks first
-    - [ ] delete button next to tracks, sync updated trackstable to localStorage.tracks
+
+    TASK:       speed!!
+    CONTEXT:    loading the website is very slow now, 
+    CAUSE IDEA: I'm assuming its something
+                to do with using local storage to store and populate everything, 
+                but it's really annoyingly slow on startup for such a simple 
+                web app.
+    CAUSE IDEA: it looks like loading the page tracks into the table is slow, 
+                but i dont think that involves localstorage, so maybe this is 
+                an issue of blocking processes and not localstorage
+    CAUSE IDEA: video loading could be to do with waiting for tracks file to be 
+                imported before the video can load, blocking that process
+    IDEA:       turn page back into using html elements to store links and titles
+
+
+    TASK:       bookmarks
+    TODO:       create bookmark from tracks saved
+    TODO:       read bookmark to update tracks
+    TODO:       easily creatable/saveable anonymous playlists 
+
 
 # High
-- [ ] TODO strike out videos that cant be played
-    - [ ] RELATED: check track added through user input is an actual url? (similar in function to check playable videos really)
-- [ ] create radio out of playlist (i.e. shuffle a playlist so it works almost like a radio)
-- [ ] tags (save them in the html row element as an attribute)
-- [ ] queue
-- [ ] playlist (use json to manange multiple?)
-- [ ] do i need the Tracks class? can I have model do what its doing (essentially tying current track with tracks array)
+    
+    TASK:       playlist
+    TODO:       playlist (use json to manange multiple?)
+    TODO:       create radio out of playlist (i.e. shuffle a playlist so it 
+                works almost like a radio)
+
+    TASK:       Queue
+    TODO:       allow arbitrary songs from main list to be placed into queue
+    IDEA:       either have a window to show the next songs in the queue 
+                or highlight the track rows with a number showing the queue 
+                order theyre in
+
+    TASK:       tags
+    TODO:       lets user search through track list for tags
+    IDEA:       save them in the html row element as an attribute
+
+    TASK:       removing tracks class to avoid confusion/redundancy
+    QUESTION:   do i need the Tracks class? 
+                can I have model do what its doing (essentially tying current 
+                track with tracks array)
+
+    TASK:       unplayable videos
+    TODO:       strike out videos that cant be played
+    RELATED:    check track added through user input is an actual url? 
+                (similar in function to check playable videos really)
+    RELATED:    Function that cleans up dead links? 
+                yt-player does this I saw, wonder if reactplayer offers this kind of option? 
+                surely theres a url I can hit to check?
+
+    TASK:       sync session backup, 
+    NOTE:       the purpose behind this task is so that i dont lose tracks i find if the browser crashes or i forget to 
+                save the current track list to somewhere more permanent
+                basically trying to avoid me having to look through youtube again if ive already done it once to find a track i like, 
+                if ive found it i want it to stay in the list permanently
+    TODO:       store urls in localStorage to let user close out of tab and come back to urls they added before
+                so if user closes tab and tracks has urls then it will populate table with those instead of the default list
+    IDEA:       save urls with only their unique video id to save space
+    IDEA:       when adding/deleting a track add a fading message that localStorage has been updated
+    TODO:       when adding a new track, sync trackstable to localstorage.tracks first
+    TODO:       delete button next to tracks, sync updated trackstable to localStorage.tracks
+    TODO:       personal sync: using lsyncd i can continuously synchronize directory trees on local and remote server
+    ISSUE:      how are merge conflicts resolved? 
+                can they happen if its live? 
+                what if the daemon dies and the file is updated differently on remote to what it is on local
+        LINK:   lsyncd https://unix.stackexchange.com/questions/307046/real-time-file-synchronization
+        LINK:   working rysnc to be lsyncd https://unix.stackexchange.com/questions/596039/how-to-sync-backup-files-whenever-change-is-detected
+        LINK:   bidrectional updates using unison: https://unix.stackexchange.com/questions/596039/how-to-sync-backup-files-whenever-change-is-detected
+        LINK:   jamsync, might not actually be relevant but found on HN and looked cool: https://news.ycombinator.com/item?id=34439461
+    IDEA:       places i can store tracks: in the browser (temp), locally to file, dedicated server i host, mongodb, github
+
+    TASK:       drag n drop
+    TODO:       drag and drop feature to import songs from file
+    LINK:       https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API
+    LINK:       https://developer.mozilla.org/en-US/docs/Web/API/File_API/Using_files_from_web_applications#selecting_files_using_drag_and_drop
+    LINK:       //https://developer.mozilla.org/en-US/docs/Web/API/File_and_Directory_Entries_API
+    
+    TASK:       custom context menu to reduce clutter
+    TODO:       custom context menu to hide all the buttons?
+    ISSUE:      how would a user know to even right click to get access to those features
+
+
 
 # Unsorted
-//TODO fix some links not working inside the catalog index.html, requesting to be viewed in youtube (e.g. macroblank) but doesnt happen when played from github pages site
-//TODO add a red live(()) option to the link like the live videos have 
-//TODO Function that cleans up dead links? (yt-player does this I saw, wonder if reactplayer offers this kind of option? surely theres a url I can hit to check?)
-//TODO add seashells theme, nightmode theme, css theme from that open source github hosted blog website
+
+    TASK:       playing videos localhost vs public domain
+    TODO:       fix some links not working inside the catalog index.html, 
+                requesting to be viewed in youtube (e.g. macroblank) but 
+                doesnt happen when played from github pages site
+
+    TASK:       show which videos are live 
+    TODO:       add a red live(()) option to the link like the live videos have
+
+    TASK:       themes
+    TODO        add seashells theme, nightmode theme, 
+                css theme from that open source github hosted blog website
+                
 //TODO function that adds tags and can filter based on tags 
 //TODO function that lets me remove tracks from the list inside the index file (thats a powerful feature to add to a public page so maybe not)?
 - [ ] if theres a failure of import (or partial) of tracks file into page it might be because of bottleneck localstorage
