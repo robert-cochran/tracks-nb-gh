@@ -13,4 +13,5 @@ about
 related
     
     another repo was created to take this into and turn it into a firefox
-    plugin that anyone can use. currently incomplete.
+    plugin that anyone can use. that lives at
+    github.com/robert-cochran/tracks-plugin. currently incomplete.
