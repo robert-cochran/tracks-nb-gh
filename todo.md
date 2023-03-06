@@ -26,6 +26,11 @@ TODOS
     TODO:       create bookmark from tracks saved
     TODO:       read bookmark to update tracks
     TODO:       easily creatable/saveable anonymous playlists 
+    
+    TASK:       filter
+    TODO:       have text box that will filter down the table to only titles 
+                that contain a string match
+                e.g. [macroblank] would filter down only macroblank songs
 
 
 # High
