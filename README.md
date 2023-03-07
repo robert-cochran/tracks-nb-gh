@@ -10,6 +10,10 @@ about
     to listen to.
     To see it working go to https://robert-cochran.github.io/tracks-nb-gh/
     
+status
+    
+    currently dropped in favour of using mpv
+    
 related
     
     another repo was created to take this into and turn it into a firefox
